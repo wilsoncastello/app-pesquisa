@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Informações Sobre o Cancro Europeu">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_inicio"
+                        android:icon="@drawable/ic_info"
+                        android:title="Informações" />
+                    <item
+                        android:id="@+id/nav_galeria_imagens"
+                        android:icon="@drawable/ic_menu_camera"
+                        android:title="Galeria de Imagens" />
+                    <item
+                        android:id="@+id/nav_galeria_videos"
+                        android:icon="@drawable/ic_videocam"
+                        android:title="Galeria de Vídeos" />
+                    <item
+                        android:id="@+id/nav_sobre"
+                        android:icon="@drawable/ic_action_document"
+                        android:title="Sobre" />
+                </group>
+            </menu>
+        </item>
+
+        <item android:title="Diagnóstico e Monitoramento">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_RFID"
+                        android:icon="@drawable/ic_action_barcode_1"
+                        android:title="Monitoramento" />
+                    <item
+                        android:id="@+id/nav_diagnostico"
+                        android:icon="@drawable/ic_action_grow"
+                        android:title="Diagnóstico" />
+                </group>
+            </menu>
+        </item>
+    </group>
+
+</menu>

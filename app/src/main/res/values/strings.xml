@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Instituto Federal</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string-array name="image_ids">
+        <item>@drawable/img_card_2</item>
+        <item>@drawable/img_card_1</item>
+        <item>@drawable/back</item>
+    </string-array>
+</resources>
