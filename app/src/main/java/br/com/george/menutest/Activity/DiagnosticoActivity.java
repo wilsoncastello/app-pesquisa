@@ -126,7 +126,6 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
 
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == OPEN_CAMERA) {
-//                Bitmap bitmapCamera = (Bitmap) data.getExtras().get("data");
                 intent = new Intent(DiagnosticoActivity.this, ImageCameraActivity.class);
                 intent.putExtra("image", file);
 
@@ -157,7 +156,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Intent intent = new Intent(DiagnosticoActivity.this, MainActivity.class);
+            Intent intent = new Intent(DiagnosticoActivity.this, InformativoActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_galeria_imagens) {

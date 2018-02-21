@@ -60,7 +60,7 @@ public class SobreActivity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Intent intent = new Intent(SobreActivity.this, MainActivity.class);
+            Intent intent = new Intent(SobreActivity.this, InformativoActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_galeria_imagens) {

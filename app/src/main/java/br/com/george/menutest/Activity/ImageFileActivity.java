@@ -50,7 +50,7 @@ public class ImageFileActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ImageFileActivity.this, "Processando >> ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ImageFileActivity.this, "Processando >> " + endImage, Toast.LENGTH_SHORT).show();
             }
         });
     }

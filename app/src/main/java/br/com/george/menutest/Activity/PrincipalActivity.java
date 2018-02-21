@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import br.com.george.menutest.Helper.Permissao;
 import br.com.george.menutest.R;
 
-public class InformativoPrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView buttonInformativo;
     private ImageView buttonDiagnostico;
@@ -38,7 +38,7 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
         toolbar.setTitle("Início");
         setSupportActionBar(toolbar);
 
-        Permissao.validaPermissoes(1,InformativoPrincipalActivity.this, permissoesNecessarias);
+        Permissao.validaPermissoes(1,PrincipalActivity.this, permissoesNecessarias);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,7 +56,7 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
         buttonInformativo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(InformativoPrincipalActivity.this, MainActivity.class);
+                Intent intent = new Intent(PrincipalActivity.this, InformativoActivity.class);
                 startActivity(intent);
             }
         });
@@ -64,7 +64,7 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
         buttonDiagnostico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(InformativoPrincipalActivity.this, DiagnosticoActivity.class);
+                Intent intent = new Intent(PrincipalActivity.this, DiagnosticoActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +72,7 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
         buttonMonitoramento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(InformativoPrincipalActivity.this, MonitoramentoActivity.class);
+                Intent intent = new Intent(PrincipalActivity.this, MonitoramentoActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,19 +93,19 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
 
         if (id == R.id.nav_inicio) {
         }  else if (id == R.id.nav_galeria_imagens) {
-            Intent intent = new Intent(InformativoPrincipalActivity.this, GaleriaImagensActivity.class);
+            Intent intent = new Intent(PrincipalActivity.this, GaleriaImagensActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_galeria_videos) {
-            Intent intent = new Intent(InformativoPrincipalActivity.this, GaleriaVideosActivity.class);
+            Intent intent = new Intent(PrincipalActivity.this, GaleriaVideosActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_RFID) {
-            Intent intent = new Intent(InformativoPrincipalActivity.this, MonitoramentoActivity.class);
+            Intent intent = new Intent(PrincipalActivity.this, MonitoramentoActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_sobre) {
-            Intent intent = new Intent(InformativoPrincipalActivity.this, SobreActivity.class);
+            Intent intent = new Intent(PrincipalActivity.this, SobreActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_diagnostico) {
-            Intent intent = new Intent(InformativoPrincipalActivity.this, DiagnosticoActivity.class);
+            Intent intent = new Intent(PrincipalActivity.this, DiagnosticoActivity.class);
             startActivity(intent);
         }
 
@@ -125,7 +125,7 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
     }
 
     private void alertaValidacaoPermissao(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(InformativoPrincipalActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(PrincipalActivity.this);
         builder.setTitle("Permissões Negadas");
         builder.setMessage("Negando algumas permissões você não poderá utilizar o app.");
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
@@ -137,5 +137,11 @@ public class InformativoPrincipalActivity extends AppCompatActivity implements N
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

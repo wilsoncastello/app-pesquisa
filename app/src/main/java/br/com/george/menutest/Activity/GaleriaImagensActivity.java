@@ -90,7 +90,7 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Intent intent = new Intent(GaleriaImagensActivity.this, MainActivity.class);
+            Intent intent = new Intent(GaleriaImagensActivity.this, InformativoActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_galeria_imagens) {

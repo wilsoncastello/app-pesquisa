@@ -35,6 +35,7 @@ public class ImageCameraActivity extends AppCompatActivity {
         btSalvar = (Button) findViewById(R.id.bt_processar);
 
         imageCamera.setImageURI(endFoto);
+        imageCamera.setRotation(90);
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +47,7 @@ public class ImageCameraActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ImageCameraActivity.this, "Processando >> ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ImageCameraActivity.this, "Processando >> " + endFoto.getPath(), Toast.LENGTH_SHORT).show();
             }
         });
     }

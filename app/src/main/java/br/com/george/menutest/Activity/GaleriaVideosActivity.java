@@ -116,7 +116,7 @@ public class GaleriaVideosActivity extends AppCompatActivity implements Navigati
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Intent intent = new Intent(GaleriaVideosActivity.this, MainActivity.class);
+            Intent intent = new Intent(GaleriaVideosActivity.this, InformativoActivity.class);
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_galeria_imagens) {
