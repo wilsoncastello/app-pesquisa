@@ -1,6 +1,6 @@
 package br.com.george.menutest.Activity;
 
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,7 +15,7 @@ public class ImageCameraActivity extends AppCompatActivity {
     private ImageView imageCamera;
     private Button btCancelar;
     private Button btSalvar;
-    private Bitmap bitmap;
+    private Uri endFoto;
 
 
     @Override
@@ -27,14 +27,14 @@ public class ImageCameraActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
-            bitmap = (Bitmap)extra.get("image");
+            endFoto = (Uri)extra.get("image");
         }
 
         imageCamera = (ImageView) findViewById(R.id.image_camera);
         btCancelar = (Button) findViewById(R.id.bt_cancelar);
         btSalvar = (Button) findViewById(R.id.bt_processar);
 
-        imageCamera.setImageBitmap(bitmap);
+        imageCamera.setImageURI(endFoto);
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override

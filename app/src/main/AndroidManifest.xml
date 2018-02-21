@@ -53,6 +53,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.ImageCameraActivity" />
         <activity android:name=".Activity.ImageFileActivity"></activity>
+
+        <provider
+            android:name=".Helper.DiagnosticoActivityProvider"
+            android:authorities="${applicationId}.my.package.name.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

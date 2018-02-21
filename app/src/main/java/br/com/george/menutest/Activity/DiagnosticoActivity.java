@@ -2,11 +2,12 @@ package br.com.george.menutest.Activity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import br.com.george.menutest.R;
 
@@ -30,7 +33,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
     private String textoDescricao;
     private ImageView btAbreCamera;
     private ImageView btAbreImagem;
-    private File file;
+    private Uri file;
     private String picturePath;
 
     static final int OPEN_CAMERA = 1;
@@ -73,8 +76,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
         btAbreCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, OPEN_CAMERA);
+                takePicture(view);
             }
         });
 
@@ -88,15 +90,45 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
         });
     }
 
+    public void takePicture(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        file = FileProvider.getUriForFile(DiagnosticoActivity.this, getApplicationContext().getPackageName() + ".my.package.name.provider", getOutputMediaFile());
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+
+        startActivityForResult(intent, OPEN_CAMERA);
+    }
+
+    private static File getOutputMediaFile(){
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "ImageCameraAppIFSC");
+
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        return new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_" + timeStamp + ".jpg");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Intent intent;
 
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == OPEN_CAMERA) {
-                Bitmap bitmapCamera = (Bitmap) data.getExtras().get("data");
+//                Bitmap bitmapCamera = (Bitmap) data.getExtras().get("data");
                 intent = new Intent(DiagnosticoActivity.this, ImageCameraActivity.class);
-                intent.putExtra("image", bitmapCamera);
+                intent.putExtra("image", file);
 
                 startActivity(intent);
             } else if (requestCode == OPEN_FILE) {
@@ -116,22 +148,6 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
                 startActivity(intent);
             }
         }
-    }
-
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

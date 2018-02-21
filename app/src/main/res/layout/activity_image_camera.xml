@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:layout_weight="11"
         android:background="@android:color/white"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         android:src="@drawable/back" />
 
     <LinearLayout
