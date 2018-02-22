@@ -41,7 +41,6 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Início");
         setSupportActionBar(toolbar);
-
         Permissao.validaPermissoes(1,PrincipalActivity.this, permissoesNecessarias);
 
         pastaImagesTemp = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ImageCameraAppIFSC");
