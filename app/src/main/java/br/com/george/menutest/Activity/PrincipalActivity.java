@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.File;
+
 import br.com.george.menutest.Helper.Permissao;
 import br.com.george.menutest.R;
 
@@ -25,6 +28,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     private ImageView buttonInformativo;
     private ImageView buttonDiagnostico;
     private ImageView buttonMonitoramento;
+    private File pastaImagesTemp;
     private String[] permissoesNecessarias = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -39,6 +43,8 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         setSupportActionBar(toolbar);
 
         Permissao.validaPermissoes(1,PrincipalActivity.this, permissoesNecessarias);
+
+        pastaImagesTemp = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ImageCameraAppIFSC");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -139,9 +145,21 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         dialog.show();
     }
 
+    public void deleteRecursive(File fileOrDirectory) {
+
+        if (fileOrDirectory.isDirectory()) {
+            for (File child : fileOrDirectory.listFiles()) {
+                deleteRecursive(child);
+            }
+        }
+
+        fileOrDirectory.delete();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
+        deleteRecursive(pastaImagesTemp);
     }
 }
