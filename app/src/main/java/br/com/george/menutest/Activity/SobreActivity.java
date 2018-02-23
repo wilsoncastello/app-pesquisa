@@ -17,6 +17,7 @@ import br.com.george.menutest.R;
 public class SobreActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private WebView webView;
+    private WebView webViewSmall;
     private String texto = "Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum " +
             "tipo de alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um pouco " +
             "convincentes. Se você pretende usar uma passagem de Lorem Ipsum, precisa ter certeza de que não há algo embaraçoso " +
@@ -48,8 +49,14 @@ public class SobreActivity extends AppCompatActivity implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        webView = (WebView) findViewById(R.id.web_view);
-        webView.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + texto + "</p>", "text/html", "UTF-8");
+        webView = (WebView) findViewById(R.id.web_view_sobre);
+        webViewSmall = (WebView) findViewById(R.id.web_view_sobre_small);
+
+        if(webView != null){
+            webView.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + texto + "</p>", "text/html", "utf-8");
+        } else {
+            webViewSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + texto + "</p>", "text/html", "utf-8");
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

@@ -30,6 +30,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
 
     private TextView titulo;
     private WebView descricao;
+    private WebView descricaoSmall;
     private String textoDescricao;
     private ImageView btAbreCamera;
     private ImageView btAbreImagem;
@@ -66,11 +67,16 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
 
         titulo = (TextView) findViewById(R.id.titulo_diagnostico);
         descricao = (WebView) findViewById(R.id.descricao_diagnostico);
+        descricaoSmall = (WebView) findViewById(R.id.descricao_diagnostico_small);
         btAbreCamera = (ImageView) findViewById(R.id.bt_abrir_camera);
         btAbreImagem = (ImageView) findViewById(R.id.bt_abrir_imagem);
 
         titulo.setText("Porque nós o usamos?");
-        descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        if(descricao != null){
+            descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        } else{
+            descricaoSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        }
 
 
         btAbreCamera.setOnClickListener(new View.OnClickListener() {

@@ -11,17 +11,6 @@
     tools:showIn="@layout/app_bar_galeria_imagens"
     android:background="@android:color/white">
 
-    <!--<ExpandableListView-->
-        <!--android:id="@+id/list_cat_imagens"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:dividerHeight="8dp"-->
-        <!--android:childDivider="@android:color/white"-->
-        <!--android:divider="@android:color/white"-->
-        <!--&gt;</ExpandableListView>-->
-
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recyclerview"

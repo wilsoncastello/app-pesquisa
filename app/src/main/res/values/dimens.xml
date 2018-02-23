@@ -6,4 +6,8 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="foto_galeria">75dp</dimen>
+
+    <!-- Strings -->
+    <dimen name="title_cards_principal_small">20sp</dimen>
+    <dimen name="title_cards_principal">30sp</dimen>
 </resources>

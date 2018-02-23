@@ -15,7 +15,9 @@ import br.com.george.menutest.R;
 public class ContentInformativoActivity extends AppCompatActivity {
 
     private WebView webViewParagrafo;
+    private WebView webViewParagrafoSmall;
     private WebView webViewParagrafo2;
+    private WebView webViewParagrafo2Small;
     private ImageView imageHeader;
     private TextView tituloHeader;
     private TextView linkInfo;
@@ -53,15 +55,31 @@ public class ContentInformativoActivity extends AppCompatActivity {
         int qtdParagrafos2 = paragrafos.size();
 
         String codeWeb = "";
+        String codeWebSmall = "";
+
         for (int i = 0; i <= (qtdParagrafos - 1); i++) {
             codeWeb += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:18px\">" + paragrafos.get(i) + "</p>";
         }
+        for (int i = 0; i <= (qtdParagrafos - 1); i++) {
+            codeWebSmall += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:14px\">" + paragrafos.get(i) + "</p>";
+        }
+
         webViewParagrafo = (WebView) findViewById(R.id.web_view_paragrafo);
-        webViewParagrafo.loadData(
-                 codeWeb,
-                "text/html",
-                "UTF-8"
-        );
+        webViewParagrafoSmall = (WebView) findViewById(R.id.web_view_paragrafo_small);
+
+        if (webViewParagrafo != null){
+            webViewParagrafo.loadData(
+                    codeWeb,
+                    "text/html",
+                    "UTF-8"
+            );
+        } else {
+            webViewParagrafoSmall.loadData(
+                    codeWebSmall,
+                    "text/html",
+                    "UTF-8"
+            );
+        }
 
         linkInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,15 +90,30 @@ public class ContentInformativoActivity extends AppCompatActivity {
         });
 
         codeWeb = "";
+        codeWebSmall = "";
+
         for (int i = 0; i <= (qtdParagrafos2 - 1); i++) {
             codeWeb += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:18px\">" + paragrafos2.get(i) + "</p>";
         }
+        for (int i = 0; i <= (qtdParagrafos2 - 1); i++) {
+            codeWebSmall += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:14px\">" + paragrafos2.get(i) + "</p>";
+        }
         webViewParagrafo2 = (WebView) findViewById(R.id.web_view_paragrafo_2);
-        webViewParagrafo2.loadData(
-                codeWeb,
-                "text/html",
-                "UTF-8"
-        );
+        webViewParagrafo2Small = (WebView) findViewById(R.id.web_view_paragrafo_2_small);
+
+        if (webViewParagrafo2 != null){
+            webViewParagrafo2.loadData(
+                    codeWeb,
+                    "text/html",
+                    "UTF-8"
+            );
+        } else {
+            webViewParagrafo2Small.loadData(
+                    codeWebSmall,
+                    "text/html",
+                    "UTF-8"
+            );
+        }
     }
 
 }
