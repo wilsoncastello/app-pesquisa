@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/header_tela_inicial"
-        layout="@layout/nav_header_main" />
+        layout="@layout/header_principal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,15 +39,26 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/primeiro_card_principal"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/title_cards_principal_small"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.873" />
+                app:layout_constraintVertical_bias="0.905" />
+
+            <ImageView
+                android:id="@+id/ic_informativo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_info_white_48dp" />
+
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -72,15 +83,25 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/segundo_card_principal"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/title_cards_principal_small"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.873" />
+                app:layout_constraintVertical_bias="0.906" />
+
+            <ImageView
+                android:id="@+id/ic_diagnostico"
+                android:layout_width="50dp"
+                android:layout_height="58dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_action_grow" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -103,15 +124,25 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/terceiro_card_principal"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/title_cards_principal_small"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintHorizontal_bias="0.047"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.873" />
+                app:layout_constraintVertical_bias="0.909" />
+
+            <ImageView
+                android:id="@+id/ic_monitoramento"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_action_barcode_white" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 
