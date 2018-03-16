@@ -10,10 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import br.com.george.menutest.R;
 
 public class MonitoramentoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    private TextView titulo;
+    private WebView descricao;
+    private String textoDescricao;
+    private ImageView btIniciarLeitor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,29 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        textoDescricao = "É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página " +
+                "quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de " +
+                "letras, ao contrário de \"Conteúdo aqui, conteúdo aqui\", fazendo com que ele tenha uma aparência similar a de um" +
+                " texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como " +
+                "texto-modelo padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção. " +
+                "Várias versões novas surgiram ao longo dos anos, eventualmente por acidente, e às vezes de propósito (injetando " +
+                "humor, e coisas do gênero).";
+
+        titulo = (TextView) findViewById(R.id.titulo_monitoramento);
+        descricao = (WebView) findViewById(R.id.descricao_monitoramento);
+        btIniciarLeitor= (ImageView) findViewById(R.id.bt_iniciar_leitor);
+
+        titulo.setText("Porque nós o usamos?");
+        descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+
+        btIniciarLeitor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MonitoramentoActivity.this, ListBluetoothActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
