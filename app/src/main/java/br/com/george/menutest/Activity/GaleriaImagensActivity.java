@@ -218,7 +218,7 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
                             sectionAdapter.getPositionInSection(itemHolder.getAdapterPosition()), title),
                             Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(GaleriaImagensActivity.this, DetailsImageActivity.class);
+                    Intent intent = new Intent(GaleriaImagensActivity.this, DatalhesImagemActivity.class);
                     intent.putExtra("title", tituloImage);
                     intent.putExtra("image", resourceImage);
                     startActivity(intent);

@@ -6,6 +6,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +22,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.ContentInformativoActivity"
+            android:name=".Activity.ConteudoInformativoActivity"
             android:parentActivityName=".Activity.InformativoActivity" />
         <activity
             android:name=".Activity.SobreActivity"
@@ -32,8 +34,8 @@
             android:name=".Activity.GaleriaImagensActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.DetailsImageActivity"
-            android:parentActivityName=".Activity.ContentInformativoActivity"
+            android:name=".Activity.DatalhesImagemActivity"
+            android:parentActivityName=".Activity.ConteudoInformativoActivity"
             android:theme="@style/ActionBarDetails" />
         <activity
             android:name=".Activity.PrincipalActivity"
@@ -50,8 +52,8 @@
         <activity
             android:name=".Activity.MonitoramentoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.ImageCameraActivity" />
-        <activity android:name=".Activity.ImageFileActivity" />
+        <activity android:name=".Activity.ImagemCameraActivity" />
+        <activity android:name=".Activity.ImagemArquivoActivity" />
 
         <provider
             android:name=".Helper.DiagnosticoActivityProvider"
@@ -63,10 +65,13 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".Activity.ListBluetoothActivity"
-            android:parentActivityName=".Activity.MonitoramentoActivity"/>
-        <activity android:name=".Activity.ListTagsActivity"
-            android:parentActivityName=".Activity.MonitoramentoActivity"></activity>
+        <activity
+            android:name=".Activity.BluetoothActivity"
+            android:parentActivityName=".Activity.MonitoramentoActivity" />
+        <activity
+            android:name=".Activity.EtiquetaActivity"
+            android:parentActivityName=".Activity.MonitoramentoActivity" />
+        <activity android:name=".Activity.CadastroActivity"></activity>
     </application>
 
 </manifest>

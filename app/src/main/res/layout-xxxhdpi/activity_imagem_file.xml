@@ -7,10 +7,10 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context="br.com.george.menutest.Activity.ImageCameraActivity">
+    tools:context="br.com.george.menutest.Activity.ImagemArquivoActivity">
 
     <ImageView
-        android:id="@+id/image_camera"
+        android:id="@+id/image_file"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -27,7 +27,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/bt_cancelar"
+            android:id="@+id/bt_cancelar_file"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="4dp"
@@ -37,7 +37,7 @@
             android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/bt_processar"
+            android:id="@+id/bt_processar_file"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -48,3 +48,4 @@
     </LinearLayout>
 
 </LinearLayout>
+

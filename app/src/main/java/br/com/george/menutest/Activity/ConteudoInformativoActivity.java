@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import br.com.george.menutest.R;
 
-public class ContentInformativoActivity extends AppCompatActivity {
+public class ConteudoInformativoActivity extends AppCompatActivity {
 
     private WebView webViewParagrafo;
     private WebView webViewParagrafoSmall;
@@ -84,7 +84,7 @@ public class ContentInformativoActivity extends AppCompatActivity {
         linkInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(ContentInformativoActivity.this, GaleriaImagensActivity.class);
+                Intent intent =  new Intent(ConteudoInformativoActivity.this, GaleriaImagensActivity.class);
                 startActivity(intent);
             }
         });

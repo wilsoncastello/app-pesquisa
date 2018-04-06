@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import br.com.george.menutest.R;
 
-public class ImageCameraActivity extends AppCompatActivity {
+public class ImagemCameraActivity extends AppCompatActivity {
 
     private ImageView imageCamera;
     private Button btCancelar;
@@ -21,7 +21,7 @@ public class ImageCameraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_camera);
+        setContentView(R.layout.activity_imagem_camera);
         setTitle("Preview");
 
         Bundle extra = getIntent().getExtras();
@@ -47,7 +47,7 @@ public class ImageCameraActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ImageCameraActivity.this, "Processando >> " + endFoto.getPath(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ImagemCameraActivity.this, "Processando >> " + endFoto.getPath(), Toast.LENGTH_SHORT).show();
             }
         });
     }

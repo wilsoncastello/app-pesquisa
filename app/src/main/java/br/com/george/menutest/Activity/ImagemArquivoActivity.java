@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import br.com.george.menutest.R;
 
-public class ImageFileActivity extends AppCompatActivity {
+public class ImagemArquivoActivity extends AppCompatActivity {
 
     private ImageView imageFile;
     private Button btCancelar;
@@ -23,7 +23,7 @@ public class ImageFileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_file);
+        setContentView(R.layout.activity_imagem_file);
         setTitle("Preview");
 
         Bundle extra = getIntent().getExtras();
@@ -50,7 +50,7 @@ public class ImageFileActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ImageFileActivity.this, "Processando >> " + endImage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ImagemArquivoActivity.this, "Processando >> " + endImage, Toast.LENGTH_SHORT).show();
             }
         });
     }

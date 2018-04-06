@@ -132,7 +132,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
 
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == OPEN_CAMERA) {
-                intent = new Intent(DiagnosticoActivity.this, ImageCameraActivity.class);
+                intent = new Intent(DiagnosticoActivity.this, ImagemCameraActivity.class);
                 intent.putExtra("image", file);
 
                 startActivity(intent);
@@ -147,7 +147,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
                 cursor.close();
 //                Bitmap bitmapFile = BitmapFactory.decodeFile(picturePath);
 
-                intent = new Intent(DiagnosticoActivity.this, ImageFileActivity.class);
+                intent = new Intent(DiagnosticoActivity.this, ImagemArquivoActivity.class);
                 intent.putExtra("endereco_image", picturePath);
 
                 startActivity(intent);

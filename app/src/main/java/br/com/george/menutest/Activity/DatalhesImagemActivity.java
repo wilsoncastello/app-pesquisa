@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import br.com.george.menutest.R;
 
-public class DetailsImageActivity extends AppCompatActivity {
+public class DatalhesImagemActivity extends AppCompatActivity {
 
     private String titulo;
     private int imageResource;

@@ -179,7 +179,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
                 switch (i){
                     case 0:
                         auxCard = cards.get(0);
-                        intent = new Intent(InformativoActivity.this, ContentInformativoActivity.class);
+                        intent = new Intent(InformativoActivity.this, ConteudoInformativoActivity.class);
                         intent.putExtra("paragrafos", auxCard.getParagrafos());
                         intent.putExtra("paragrafos2", auxCard.getParagrafos2());
                         intent.putExtra("titulo", auxCard.getTituloCard());
@@ -190,7 +190,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
 
                     case 1:
                         auxCard = cards.get(1);
-                        intent = new Intent(InformativoActivity.this, ContentInformativoActivity.class);
+                        intent = new Intent(InformativoActivity.this, ConteudoInformativoActivity.class);
                         intent.putExtra("paragrafos", auxCard.getParagrafos());
                         intent.putExtra("paragrafos2", auxCard.getParagrafos2());
                         intent.putExtra("titulo", auxCard.getTituloCard());
@@ -201,7 +201,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
 
                     case 2:
                         auxCard = cards.get(2);
-                        intent = new Intent(InformativoActivity.this, ContentInformativoActivity.class);
+                        intent = new Intent(InformativoActivity.this, ConteudoInformativoActivity.class);
                         intent.putExtra("paragrafos", auxCard.getParagrafos());
                         intent.putExtra("paragrafos2", auxCard.getParagrafos2());
                         intent.putExtra("titulo", auxCard.getTituloCard());
@@ -212,7 +212,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
 
                     case 3:
                         auxCard = cards.get(3);
-                        intent = new Intent(InformativoActivity.this, ContentInformativoActivity.class);
+                        intent = new Intent(InformativoActivity.this, ConteudoInformativoActivity.class);
                         intent.putExtra("paragrafos", auxCard.getParagrafos());
                         intent.putExtra("paragrafos2", auxCard.getParagrafos2());
                         intent.putExtra("titulo", auxCard.getTituloCard());
