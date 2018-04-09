@@ -23,6 +23,7 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
     private WebView descricao;
     private String textoDescricao;
     private ImageView btIniciarLeitor;
+    private ImageView btVerificarBanco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,8 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
 
         titulo = (TextView) findViewById(R.id.titulo_monitoramento);
         descricao = (WebView) findViewById(R.id.descricao_monitoramento);
-        btIniciarLeitor= (ImageView) findViewById(R.id.bt_iniciar_leitor);
+        btIniciarLeitor = (ImageView) findViewById(R.id.bt_iniciar_leitor);
+        btVerificarBanco = (ImageView) findViewById(R.id.bt_verificar_banco);
 
         titulo.setText("Porque nós o usamos?");
         descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
@@ -61,6 +63,14 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MonitoramentoActivity.this, BluetoothActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btVerificarBanco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MonitoramentoActivity.this, DatabaseActivity.class);
                 startActivity(intent);
             }
         });

@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class Database extends SQLiteOpenHelper{
+public class Database extends SQLiteOpenHelper {
 
     //NOME DA BASE DE DADOS
-    private static final String NOME_BANCO  = "rfid.db";
+    private static final String NOME_BANCO = "rfid.db";
     //VERSÃO DO BANCO DE DADOS
     private static final int VERSAO_BANCO = 1;
 
@@ -21,7 +21,7 @@ public class Database extends SQLiteOpenHelper{
 
         stringBuilderCreateTable.append(" CREATE TABLE tags (");
         stringBuilderCreateTable.append("        id             INTEGER PRIMARY KEY AUTOINCREMENT, ");
-        stringBuilderCreateTable.append("        descricao      TEXT    NOT NULL,            ");
+        stringBuilderCreateTable.append("        descricao      TEXT,            ");
         stringBuilderCreateTable.append("        identificacao  TEXT    NOT NULL)            ");
 
         db.execSQL(stringBuilderCreateTable.toString());
@@ -33,7 +33,7 @@ public class Database extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public SQLiteDatabase GetConexaoDataBase(){
+    public SQLiteDatabase GetConexaoDataBase() {
         return this.getWritableDatabase();
     }
 }

@@ -71,7 +71,11 @@
         <activity
             android:name=".Activity.EtiquetaActivity"
             android:parentActivityName=".Activity.MonitoramentoActivity" />
-        <activity android:name=".Activity.CadastroActivity"></activity>
+        <activity android:name=".Activity.CadastroActivity" />
+        <activity
+            android:name=".Activity.DatabaseActivity"
+            android:parentActivityName=".Activity.MonitoramentoActivity" />
+        <activity android:name=".Activity.ModificarActivity"></activity>
     </application>
 
 </manifest>

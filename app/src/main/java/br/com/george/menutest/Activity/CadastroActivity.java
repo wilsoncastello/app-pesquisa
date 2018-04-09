@@ -1,16 +1,18 @@
 package br.com.george.menutest.Activity;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import br.com.george.menutest.Database.TagDAO;
 import br.com.george.menutest.Model.Tag;
@@ -18,31 +20,34 @@ import br.com.george.menutest.R;
 
 public class CadastroActivity extends AppCompatActivity {
     private EditText edtDescricao;
-    private EditText edtIdentificacao;
+    private TextView txtIdentificacao;
     private Tag tag;
-    private Toolbar mToolbar;
+    private Button btnGravar;
+    private Button btnCancelar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        setTitle("Cadastro de Etiquetas");
+
         // Pegando os componentes da tela de cadastro (activity_cadastro.xml
         edtDescricao = (EditText) findViewById(R.id.editDescricaoEtiqueta);
-        edtIdentificacao = (EditText) findViewById(R.id.editIdTag);
+        txtIdentificacao = (TextView) findViewById(R.id.txtIdTag);
 
         if (getIntent().hasExtra("tag")) {
-            edtIdentificacao.setText(getIntent().getExtras().getString("tag").toString());
+            txtIdentificacao.setText(getIntent().getExtras().getString("tag").toString());
         }
 
-        final Button btnGravar = (Button) findViewById(R.id.btnSalvarBD);
+        btnGravar = (Button) findViewById(R.id.btnSalvarBD);
         btnGravar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 tag = new Tag();
 
-                tag.setIdentificacao(edtIdentificacao.getText().toString());
+                tag.setIdentificacao(txtIdentificacao.getText().toString());
                 tag.setDescricao(edtDescricao.getText().toString());
 
                 new TagDAO(CadastroActivity.this).Salvar(tag);
@@ -60,6 +65,26 @@ public class CadastroActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+
+        btnCancelar = (Button) findViewById(R.id.btnCancelarCadastro);
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    public void verificaEtiquetasSalvas(String tag){
+
+        List<Tag> tagsVerificacao = new TagDAO(CadastroActivity.this).SelecionarTodos();
+
+        for(Tag tagAux: tagsVerificacao) {
+            if (tagAux.equals(tag)) {
+                Toast.makeText(CadastroActivity.this, "Etiqueta já salva!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
     }
 
     //region MÉTODOS NÃO UTILIZADOS

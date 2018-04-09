@@ -8,45 +8,53 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="Identificação"
+        android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:text="Identificação"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/txtIdTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="30000000000000000000968"
+        android:textSize="18dp"/>
 
-        <EditText
-            android:id="@+id/editIdTag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Digite a tag RFID" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Descrição"
+        android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Descrição"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/editDescricaoEtiqueta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Escreva uma descrição breve..." />
 
-        <EditText
-            android:id="@+id/editDescricaoEtiqueta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Escreva uma descrição breve" />
+    <Button
+        android:id="@+id/btnSalvarBD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:text="Salvar"
+        android:textColor="#FFF" />
 
-        <Button
-            android:id="@+id/btnSalvarBD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            android:text="Salvar"
-            android:textColor="#FFF" />
-    </ScrollView>
+    <Button
+        android:id="@+id/btnCancelarCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:text="Cancelar"
+        android:textColor="#FFF" />
 
 </LinearLayout>

@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.george.menutest.Adapter.TagAdapter;
+import br.com.george.menutest.Database.TagDAO;
+import br.com.george.menutest.Model.Tag;
 import br.com.george.menutest.R;
 import br.com.george.menutest.RFID.DotR900.OnBtEventListener;
 import br.com.george.menutest.RFID.DotR900.R900;
@@ -60,7 +62,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
     public static boolean UseMask = false;
     private TextView lblTotalTags;
     private ListView lstTag;
-    private BaseAdapter mAdapterTag;
+    private ArrayAdapter mAdapterTag;
     private String tag;
     private List<String> tags;
     //endregion
@@ -95,6 +97,8 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_etiqueta);
 
+        setTitle("Tags Econtradas");
+
         if (getIntent().hasExtra("addressDispositivo")) {
             leitor = new R900(EtiquetaActivity.this, mHandler, this);
 
@@ -103,26 +107,47 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
 
             lblTotalTags = (TextView) findViewById(R.id.contadorTags);
             lblTotalTags.setText("0");
-            lstTag = (ListView) findViewById(R.id.lstAprentaTags);
+            lstTag = (ListView) findViewById(R.id.lstApresentaTags);
 
             tags = new ArrayList<>();
             tags = leitor.getListaTags();
-            mAdapterTag = new TagAdapter(getApplicationContext(), tags);
+
+            mAdapterTag = new TagAdapter(EtiquetaActivity.this, tags);
             lstTag.setAdapter(mAdapterTag);
 
             lstTag.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(EtiquetaActivity.this, CadastroActivity.class);
-                    tag = leitor.getListaTags().get(position);
-                    abrirMenu();
+                    List<Tag> tagsArray = new TagDAO(EtiquetaActivity.this).SelecionarTodos();
+                    String tagVerifica = leitor.getListaTags().get(position);
+                    boolean igual = false;
+
+                    if(tagsArray != null){
+                        for(Tag tagAtual: tagsArray){
+                            if(tagAtual.getIdentificacao().equals(tagVerifica)){
+                                igual = true;
+                                break;
+                            } else {
+                                igual = false;
+                            }
+                        }
+                    } else {
+                        Toast.makeText(EtiquetaActivity.this, "Banco vazio!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if(igual){
+                        Toast.makeText(EtiquetaActivity.this, "Etiqueta já salva!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        tag = leitor.getListaTags().get(position);
+                        abrirMenu();
+                    }
+
                 }
             });
         }
 
         onNotifyBtDataRecv();
     }
-
 
     //region EVENTOS DA TELA
     @Override
@@ -233,7 +258,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
         dialog.setContentView(R.layout.menu_etiqueta);
 
         Button btnNovo = (Button) dialog.findViewById(R.id.btnNovaEtiqueta);
-        Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelarPatrimonio);
+        Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelarEtiqueta);
 
         btnNovo.setOnClickListener(new View.OnClickListener() {
             @Override

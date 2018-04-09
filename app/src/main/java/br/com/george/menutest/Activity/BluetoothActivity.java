@@ -48,6 +48,8 @@ public class BluetoothActivity extends AppCompatActivity implements OnBtEventLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
 
+        setTitle("Dispositivos Pareados");
+
         iniciarTela();
 
         //region Botão Procurar

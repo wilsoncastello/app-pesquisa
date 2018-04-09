@@ -69,7 +69,6 @@ public class TagDAO {
         //MONTA A QUERY A SER EXECUTADA
         StringBuilder stringBuilderQuery = new StringBuilder();
         stringBuilderQuery.append(" SELECT id,            ");
-        stringBuilderQuery.append("        nome,          ");
         stringBuilderQuery.append("        descricao,     ");
         stringBuilderQuery.append("        identificacao ");
         stringBuilderQuery.append("  FROM  tags           ");

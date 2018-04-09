@@ -6,17 +6,17 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnNovaEtiqueta"
+        android:id="@+id/btnExcluirDatabase"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Nova Etiqueta"
+        android:text="Excluir"
         android:textSize="17sp"
         android:textColor="#FFF"
         android:layout_margin="8dp"
         android:background="@color/colorPrimary"/>
 
     <Button
-        android:id="@+id/btnCancelarEtiqueta"
+        android:id="@+id/btnCancelarDatabase"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Cancelar"

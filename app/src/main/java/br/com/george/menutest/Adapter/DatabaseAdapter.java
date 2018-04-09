@@ -11,14 +11,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.george.menutest.Model.Tag;
 import br.com.george.menutest.R;
 
-public class TagAdapter extends ArrayAdapter {
+public class DatabaseAdapter extends ArrayAdapter {
 
     private Context context;
-    private List<String> tags;
+    private List<Tag> tags;
 
-    public TagAdapter(@NonNull Context c, @NonNull List<String> objects) {
+    public DatabaseAdapter(@NonNull Context c, @NonNull List<Tag> objects) {
         super(c, 0, objects);
         context = c;
         tags = objects;
@@ -31,13 +32,15 @@ public class TagAdapter extends ArrayAdapter {
 
         if (tags != null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.item_etiqueta, parent, false);
+            view = inflater.inflate(R.layout.item_database, parent, false);
 
-            TextView idTag = (TextView) view.findViewById(R.id.idTag);
-            TextView longIdTag = (TextView) view.findViewById(R.id.longIdTag);
+            TextView codTag = (TextView) view.findViewById(R.id.codTagDatabase);
+            TextView idTag = (TextView) view.findViewById(R.id.idTagDatabase);
+            TextView descricaoTag = (TextView) view.findViewById(R.id.descricaoTagDatabase);
 
-            idTag.setText(tags.get(position).substring(25));
-            longIdTag.setText(tags.get(position));
+            codTag.setText(String.valueOf(tags.get(position).getCod()));
+            idTag.setText(tags.get(position).getIdentificacao());
+            descricaoTag.setText(tags.get(position).getDescricao());
         }
 
         return view;

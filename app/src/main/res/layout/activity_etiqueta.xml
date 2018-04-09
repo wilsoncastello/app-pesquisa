@@ -8,11 +8,10 @@
     tools:context="br.com.george.menutest.Activity.EtiquetaActivity">
 
     <ListView
-        android:id="@+id/lstAprentaTags"
+        android:id="@+id/lstApresentaTags"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="8dp"></ListView>
+        android:layout_weight="1"></ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
