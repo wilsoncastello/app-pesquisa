@@ -38,7 +38,6 @@ public class Tag implements Serializable {
         Tag that = (Tag) o;
 
         return !(identificacao != null ? !identificacao.equals(that.identificacao) : that.identificacao != null);
-
     }
 
     @Override

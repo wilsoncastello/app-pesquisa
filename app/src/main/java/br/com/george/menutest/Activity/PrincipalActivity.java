@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import java.io.File;
 
+import br.com.george.menutest.Database.Database;
 import br.com.george.menutest.Helper.Permissao;
 import br.com.george.menutest.R;
 
@@ -38,6 +39,11 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        Database database = new Database(PrincipalActivity.this);
+        database.deletarTodasImagens();
+        database.deletarTodasTags();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Início");
         setSupportActionBar(toolbar);

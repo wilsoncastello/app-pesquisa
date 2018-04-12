@@ -1,6 +1,7 @@
 package br.com.george.menutest.Activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,12 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.george.menutest.Adapter.DatabaseAdapter;
-import br.com.george.menutest.Database.TagDAO;
+import br.com.george.menutest.Database.Database;
+import br.com.george.menutest.Model.ImagemBD;
 import br.com.george.menutest.Model.Tag;
 import br.com.george.menutest.R;
 
@@ -23,6 +26,7 @@ public class DatabaseActivity extends AppCompatActivity {
     private ListView listDatabase;
     private List<Tag> tags;
     private ArrayAdapter adapter;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,10 @@ public class DatabaseActivity extends AppCompatActivity {
 
         setTitle("Etiquetas no Banco");
 
+        database = new Database(DatabaseActivity.this);
+
         tags = new ArrayList<>();
-        tags = new TagDAO(DatabaseActivity.this).SelecionarTodos();
+        tags = database.buscarTodasTags();
 
         adapter = new DatabaseAdapter(DatabaseActivity.this, tags);
         listDatabase = (ListView) findViewById(R.id.listTagsDatabase);
@@ -45,13 +51,43 @@ public class DatabaseActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.menu_database);
 
                 Button btnExcluir = (Button) dialog.findViewById(R.id.btnExcluirDatabase);
+                Button btnImagem = (Button) dialog.findViewById(R.id.btnImagemDatabase);
                 Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelarDatabase);
 
                 btnExcluir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new TagDAO(DatabaseActivity.this).Excluir(tags.get(position).getCod());
+                        database.excluirTag(tags.get(position).getCod());
                         finish();
+                    }
+                });
+
+                btnImagem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        List<Tag> listTags = database.buscarTodasTags();
+
+                        for (Tag tagAtual : listTags) {
+                            if (listTags.indexOf(tagAtual) == position) {
+
+                                List<ImagemBD> imagensBanco = new ArrayList<>();
+                                ArrayList<String> imagensBancoEnd = new ArrayList<>();
+                                imagensBanco = database.buscarTodasImagens();
+
+                                for(ImagemBD imagemBD: imagensBanco){
+                                    if(imagemBD.getCodTag() == tagAtual.getCod()){
+                                        imagensBancoEnd.add(imagemBD.getImagem());
+                                    }
+                                }
+
+                                Intent intent = new Intent(DatabaseActivity.this, ImagemEtiquetaActivity.class);
+                                intent.putExtra("image_etiqueta", imagensBancoEnd);
+
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(DatabaseActivity.this, "Erro!!!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
                 });
 

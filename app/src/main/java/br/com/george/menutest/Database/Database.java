@@ -2,38 +2,73 @@ package br.com.george.menutest.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
-public class Database extends SQLiteOpenHelper {
+import java.util.List;
 
-    //NOME DA BASE DE DADOS
-    private static final String NOME_BANCO = "rfid.db";
-    //VERSÃO DO BANCO DE DADOS
-    private static final int VERSAO_BANCO = 1;
+import br.com.george.menutest.Database.DAO.ImagemDAO;
+import br.com.george.menutest.Database.DAO.TagDAO;
+import br.com.george.menutest.Model.ImagemBD;
+import br.com.george.menutest.Model.Tag;
 
-    public Database(Context context) {
-        super(context, NOME_BANCO, null, VERSAO_BANCO);
+public class Database {
+
+    private SQLiteDatabase db;
+
+    public Database(Context ctx) {
+        DatabaseHelper helper = new DatabaseHelper(ctx);
+        db = helper.GetConexaoDataBase();
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        StringBuilder stringBuilderCreateTable = new StringBuilder();
-
-        stringBuilderCreateTable.append(" CREATE TABLE tags (");
-        stringBuilderCreateTable.append("        id             INTEGER PRIMARY KEY AUTOINCREMENT, ");
-        stringBuilderCreateTable.append("        descricao      TEXT,            ");
-        stringBuilderCreateTable.append("        identificacao  TEXT    NOT NULL)            ");
-
-        db.execSQL(stringBuilderCreateTable.toString());
+    // region Tag
+    public void salvarTag(Tag tag){
+        new TagDAO(db).salvar(tag);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS tb_pessoa");
-        onCreate(db);
+    public void atualizarTag(Tag tag){
+        new TagDAO(db).atualizar(tag);
     }
 
-    public SQLiteDatabase GetConexaoDataBase() {
-        return this.getWritableDatabase();
+    public void excluirTag(int cod){
+        new TagDAO(db).excluir(cod);
     }
+
+    public Tag buscarTagId(int cod){
+        return new TagDAO(db).buscarTagId(cod);
+    }
+
+    public List<Tag> buscarTodasTags(){
+        return new TagDAO(db).buscarTodos();
+    }
+
+    public void deletarTodasTags(){
+        new TagDAO(db).deletarTodos();
+    }
+    // end region Tag
+
+    // region Imagem
+    public void salvarImagem(ImagemBD imagemBD){
+        new ImagemDAO(db).salvar(imagemBD);
+    }
+
+    public void atualizarImagem(ImagemBD imagemBD){
+        new ImagemDAO(db).atualizar(imagemBD);
+    }
+
+    public void excluirImagem(int cod){
+        new ImagemDAO(db).excluir(cod);
+    }
+
+    public ImagemBD buscarIamgemId(int cod){
+        return new ImagemDAO(db).buscarImagemId(cod);
+    }
+
+    public List<ImagemBD> buscarTodasImagens(){
+        return new ImagemDAO(db).buscarTodos();
+    }
+
+    public void deletarTodasImagens(){
+        new ImagemDAO(db).deletarTodos();
+    }
+    // end region Imagem
+
 }

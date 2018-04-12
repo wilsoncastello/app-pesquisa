@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.george.menutest.Adapter.TagAdapter;
-import br.com.george.menutest.Database.TagDAO;
+import br.com.george.menutest.Database.Database;
 import br.com.george.menutest.Model.Tag;
 import br.com.george.menutest.R;
 import br.com.george.menutest.RFID.DotR900.OnBtEventListener;
@@ -65,6 +65,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
     private ArrayAdapter mAdapterTag;
     private String tag;
     private List<String> tags;
+    private Database database;
     //endregion
 
     //region HANDLER
@@ -99,6 +100,8 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
 
         setTitle("Tags Econtradas");
 
+        database = new Database(EtiquetaActivity.this);
+
         if (getIntent().hasExtra("addressDispositivo")) {
             leitor = new R900(EtiquetaActivity.this, mHandler, this);
 
@@ -118,7 +121,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
             lstTag.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    List<Tag> tagsArray = new TagDAO(EtiquetaActivity.this).SelecionarTodos();
+                    List<Tag> tagsArray = database.buscarTodasTags();
                     String tagVerifica = leitor.getListaTags().get(position);
                     boolean igual = false;
 

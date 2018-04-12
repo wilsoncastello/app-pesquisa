@@ -145,7 +145,6 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 picturePath = cursor.getString(columnIndex);
                 cursor.close();
-//                Bitmap bitmapFile = BitmapFactory.decodeFile(picturePath);
 
                 intent = new Intent(DiagnosticoActivity.this, ImagemArquivoActivity.class);
                 intent.putExtra("endereco_image", picturePath);
