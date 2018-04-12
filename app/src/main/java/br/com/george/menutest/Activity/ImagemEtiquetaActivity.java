@@ -1,58 +1,50 @@
 package br.com.george.menutest.Activity;
 
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import br.com.george.menutest.Adapter.SlideEtiquetaAdapter;
 import br.com.george.menutest.R;
+import me.relex.circleindicator.CircleIndicator;
 
 public class ImagemEtiquetaActivity extends AppCompatActivity {
 
-    private ImageView imageCamera;
-    private Button btCancelar;
-    private Button btSalvar;
-    ArrayList<String> imagens;
-    private Uri uriImagem;
+    private static ViewPager mPager;
+    private static int currentPage = 0;
+    private ArrayList<String> imagensArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imagem_etiqueta);
+
         setTitle("Preview");
 
         Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
-            imagens = extra.getStringArrayList("image_etiqueta");
+            imagensArray = extra.getStringArrayList("image_etiqueta");
         }
 
-        imageCamera = (ImageView) findViewById(R.id.image_camera_etiqueta);
-        btCancelar = (Button) findViewById(R.id.bt_cancelar_etiqueta);
-        btSalvar = (Button) findViewById(R.id.bt_salvar_etiqueta);
+        mPager = (ViewPager) findViewById(R.id.pagerEtiqueta);
+        mPager.setAdapter(new SlideEtiquetaAdapter(ImagemEtiquetaActivity.this, imagensArray));
+        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicatorEtiqueta);
+        indicator.setViewPager(mPager);
 
-//        uriImagem = Uri.parse(imagem.getImagem());
-//
-//        imageCamera.setImageURI(uriImagem);
-//        imageCamera.setRotation(90);
-
-        btCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
+        // Auto start of viewpager
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == imagensArray.size()) {
+                    currentPage = 0;
+                }
+                mPager.setCurrentItem(currentPage++, true);
             }
-        });
-
-        btSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(ImagemEtiquetaActivity.this, "Salvando >> " + imagem.getImagem(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        };
     }
 }

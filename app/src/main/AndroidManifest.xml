@@ -75,8 +75,8 @@
         <activity
             android:name=".Activity.DatabaseActivity"
             android:parentActivityName=".Activity.MonitoramentoActivity" />
-        <activity android:name=".Activity.ModificarActivity" />
-        <activity android:name=".Activity.ImagemEtiquetaActivity"></activity>
+        <activity android:name=".Activity.ImagemEtiquetaActivity"
+            android:parentActivityName=".Activity.DatabaseActivity"></activity>
     </application>
 
 </manifest>

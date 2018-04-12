@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,13 +97,6 @@ public class CadastroActivity extends AppCompatActivity {
                     imagemBD.setData(dataImagem);
                     imagemBD.setImagem(endImagem);
                     database.salvarImagem(imagemBD);
-                }
-
-                List<ImagemBD> teste = database.buscarTodasImagens();
-                for(ImagemBD endImagem: teste){
-                    Log.i("IMAGEM - Data", endImagem.getData());
-                    Log.i("IMAGEM - End", endImagem.getImagem());
-                    Log.i("IMAGEM - CodTag", String.valueOf(endImagem.getCodTag()));
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroActivity.this);

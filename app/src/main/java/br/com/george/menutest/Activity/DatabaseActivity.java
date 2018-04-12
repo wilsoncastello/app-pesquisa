@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +71,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
                                 List<ImagemBD> imagensBanco = new ArrayList<>();
                                 ArrayList<String> imagensBancoEnd = new ArrayList<>();
+
                                 imagensBanco = database.buscarTodasImagens();
 
                                 for(ImagemBD imagemBD: imagensBanco){
@@ -85,7 +85,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(DatabaseActivity.this, "Erro!!!!", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
