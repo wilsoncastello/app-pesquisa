@@ -9,7 +9,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //NOME DA BASE DE DADOS
     private static final String NOME_BANCO = "rfid.db";
     //VERSÃO DO BANCO DE DADOS
-    private static final int VERSAO_BANCO = 4;
+    private static final int VERSAO_BANCO = 5;
 
     public DatabaseHelper(Context context) {
         super(context, NOME_BANCO, null, VERSAO_BANCO);

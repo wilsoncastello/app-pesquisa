@@ -24,6 +24,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
     private ListView listDatabase;
     private List<Tag> tags;
+    private List<ImagemBD> imagens;
     private ArrayAdapter adapter;
     private Database database;
 
@@ -38,6 +39,9 @@ public class DatabaseActivity extends AppCompatActivity {
 
         tags = new ArrayList<>();
         tags = database.buscarTodasTags();
+
+        imagens = new ArrayList<>();
+        imagens = database.buscarTodasImagens();
 
         adapter = new DatabaseAdapter(DatabaseActivity.this, tags);
         listDatabase = (ListView) findViewById(R.id.listTagsDatabase);
@@ -56,6 +60,12 @@ public class DatabaseActivity extends AppCompatActivity {
                 btnExcluir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        for(ImagemBD img: imagens){
+                            if(tags.get(position).getCod() == img.getCodTag()){
+                                database.excluirImagem(img.getCod());
+                            }
+                        }
+
                         database.excluirTag(tags.get(position).getCod());
                         finish();
                     }
@@ -72,20 +82,22 @@ public class DatabaseActivity extends AppCompatActivity {
                                 List<ImagemBD> imagensBanco = new ArrayList<>();
                                 ArrayList<String> imagensBancoEnd = new ArrayList<>();
 
+                                ArrayList<String> datasBanco = new ArrayList<>();
+
                                 imagensBanco = database.buscarTodasImagens();
 
                                 for(ImagemBD imagemBD: imagensBanco){
                                     if(imagemBD.getCodTag() == tagAtual.getCod()){
                                         imagensBancoEnd.add(imagemBD.getImagem());
+                                        datasBanco.add(imagemBD.getData());
                                     }
                                 }
 
                                 Intent intent = new Intent(DatabaseActivity.this, ImagemEtiquetaActivity.class);
                                 intent.putExtra("image_etiqueta", imagensBancoEnd);
+                                intent.putExtra("data_etiqueta", datasBanco);
 
                                 startActivity(intent);
-                            } else {
-
                             }
                         }
                     }

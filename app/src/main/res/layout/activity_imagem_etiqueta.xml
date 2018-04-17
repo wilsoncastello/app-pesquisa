@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pagerEtiqueta"
@@ -15,11 +16,40 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true" />
 
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btnVoltar"
+                app:srcCompat="@drawable/icon_voltar_imagens"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="16dp"
+                android:layout_alignTop="@id/pagerEtiqueta"
+                android:adjustViewBounds="true"/>
+
+            <TextView
+                android:id="@+id/dataImagemEtiqueta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"
+                android:text="Data da Imagem"
+                android:shadowColor="@color/text_shadow"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:textSize="25sp"/>
+        </LinearLayout>
+
+
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicatorEtiqueta"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"/>
-
     </RelativeLayout>
 </LinearLayout>

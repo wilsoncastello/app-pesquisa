@@ -56,8 +56,10 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
         btIniciarLeitor = (ImageView) findViewById(R.id.bt_iniciar_leitor);
         btVerificarBanco = (ImageView) findViewById(R.id.bt_verificar_banco);
 
+        String htmlText = "<DOCTYPE html><head><meta charset=\"UTF-8\"></head><body><p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao +"</p></body></html>";
+
         titulo.setText("Porque nós o usamos?");
-        descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        descricao.loadData(htmlText, "text/html", "UTF-8");
 
         btIniciarLeitor.setOnClickListener(new View.OnClickListener() {
             @Override
