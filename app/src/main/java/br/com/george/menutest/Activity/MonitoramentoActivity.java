@@ -21,6 +21,7 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
 
     private TextView titulo;
     private WebView descricao;
+    private WebView descricaoSmall;
     private String textoDescricao;
     private ImageView btIniciarLeitor;
     private ImageView btVerificarBanco;
@@ -53,13 +54,16 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
 
         titulo = (TextView) findViewById(R.id.titulo_monitoramento);
         descricao = (WebView) findViewById(R.id.descricao_monitoramento);
+        descricaoSmall = (WebView) findViewById(R.id.descricao_monitoramento_small);
         btIniciarLeitor = (ImageView) findViewById(R.id.bt_iniciar_leitor);
         btVerificarBanco = (ImageView) findViewById(R.id.bt_verificar_banco);
 
-        String htmlText = "<DOCTYPE html><head><meta charset=\"UTF-8\"></head><body><p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao +"</p></body></html>";
-
         titulo.setText("Porque nós o usamos?");
-        descricao.loadData(htmlText, "text/html", "UTF-8");
+        if(descricao != null){
+            descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        } else{
+            descricaoSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        }
 
         btIniciarLeitor.setOnClickListener(new View.OnClickListener() {
             @Override

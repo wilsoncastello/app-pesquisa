@@ -24,7 +24,7 @@ public class DatalhesImagemActivity extends AppCompatActivity {
             imageResource = extra.getInt("image");
         }
 
-        this.getSupportActionBar().setTitle(titulo);
+        setTitle(titulo);
 
 
         TextView titleTextView = (TextView) findViewById(R.id.titleDetails);

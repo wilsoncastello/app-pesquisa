@@ -2,9 +2,10 @@ package br.com.george.menutest.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.os.Environment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -52,7 +54,14 @@ public class SlideEtiquetaAdapter extends PagerAdapter {
         TextView dateImage = (TextView) myImageLayout.findViewById(R.id.dataImagemEtiqueta);
         Uri imageUri = Uri.parse(images.get(position).getImagem());
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
+//            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
+
+            String srcFile = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + images.get(position).getImagem().substring(100);
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
+            Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(srcFile), null, options);
+
             Matrix matrix = new Matrix();
             matrix.postRotate(90);
             Bitmap rotated = Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(),bitmap.getHeight(),matrix,true);

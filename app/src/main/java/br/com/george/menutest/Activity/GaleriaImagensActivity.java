@@ -184,7 +184,8 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
         boolean expanded = false;
 
         ExpandableSection(String title, List<Image> list) {
-            super(new SectionParameters.Builder(R.layout.item_galeria_imagens)
+            super(SectionParameters.builder()
+                    .itemResourceId(R.layout.item_galeria_imagens)
                     .headerResourceId(R.layout.grupo_categoria)
                     .build());
 
