@@ -49,7 +49,7 @@ public class SlideEtiquetaAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup view, int position) {
         View myImageLayout = inflater.inflate(R.layout.slide_etiqueta, view, false);
         ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.imageSlideEtiqueta);
-        TextView dateImage = (TextView) context.findViewById(R.id.dataImagemEtiqueta);
+        TextView dateImage = (TextView) myImageLayout.findViewById(R.id.dataImagemEtiqueta);
         Uri imageUri = Uri.parse(images.get(position).getImagem());
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
@@ -59,7 +59,6 @@ public class SlideEtiquetaAdapter extends PagerAdapter {
             Glide.with(context).load(rotated).into(myImage);
             dateImage.setText(images.get(position).getData());
             view.addView(myImageLayout, 0);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -31,18 +31,6 @@
                 android:layout_alignTop="@id/pagerEtiqueta"
                 android:adjustViewBounds="true"/>
 
-            <TextView
-                android:id="@+id/dataImagemEtiqueta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center"
-                android:text="Data da Imagem"
-                android:shadowColor="@color/text_shadow"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"
-                android:textSize="25sp"/>
         </LinearLayout>
 
 

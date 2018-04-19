@@ -3,7 +3,9 @@ package br.com.george.menutest.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +65,16 @@ public class DatabaseActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         for(ImagemBD img: imagens){
                             if(tags.get(position).getCod() == img.getCodTag()){
+                                String srcFileDelete = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + img.getImagem().substring(100);
+                                File fdelete = new File(srcFileDelete);
+                                if (fdelete.exists()) {
+                                    if (fdelete.delete()) {
+                                        Log.i("DELETE", "deletou!!!");
+                                    } else {
+                                        Log.i("DELETE", "não deletou!!!");
+                                    }
+                                }
+
                                 database.excluirImagem(img.getCod());
                             }
                         }

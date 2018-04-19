@@ -4,11 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageSlideEtiqueta"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
-        app:srcCompat="@drawable/ifsc" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageSlideEtiqueta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ifsc" />
+
+        <TextView
+            android:id="@+id/dataImagemEtiqueta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:gravity="right"
+            android:text="Data da Imagem"
+            android:layout_margin="16dp"
+            android:shadowColor="@color/text_shadow"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:textSize="25sp"/>
+    </RelativeLayout>
+
+
 </FrameLayout>

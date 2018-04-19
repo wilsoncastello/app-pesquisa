@@ -42,6 +42,8 @@ public class ImagemEtiquetaActivity extends AppCompatActivity {
 
         if (extra != null) {
             imagensArray = extra.getStringArrayList("image_etiqueta");
+        }
+        if (extra != null) {
             datasArray = extra.getStringArrayList("data_etiqueta");
         }
 
@@ -49,12 +51,13 @@ public class ImagemEtiquetaActivity extends AppCompatActivity {
         final ArrayList<ImagemBD> imagens = new ArrayList<>();
 
         for(String img: imagensArray){
+            imagemBD = new ImagemBD();
+            imagemBD.setImagem(img);
             for(String data: datasArray){
-                imagemBD = new ImagemBD();
-                imagemBD.setImagem(img);
                 imagemBD.setData(data);
-                imagens.add(imagemBD);
+                break;
             }
+            imagens.add(imagemBD);
         }
 
         mPager = (ViewPager) findViewById(R.id.pagerEtiqueta);

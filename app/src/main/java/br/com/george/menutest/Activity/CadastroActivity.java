@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +48,7 @@ public class CadastroActivity extends AppCompatActivity {
     private List<String> endImagemArray;
     private int codTagImagem;
     private ArrayAdapter adapter;
+    private List<ImagemBD> imagens;
 
     static final int OPEN_CAMERA = 1;
 
@@ -67,6 +69,8 @@ public class CadastroActivity extends AppCompatActivity {
         txtIdentificacao = (TextView) findViewById(R.id.txtIdTag);
         listEndImagens = (ListView) findViewById(R.id.listEndImagens);
 
+        imagens = new ArrayList<>();
+        imagens = database.buscarTodasImagens();
 
         if (getIntent().hasExtra("tag")) {
             txtIdentificacao.setText(getIntent().getExtras().getString("tag").toString());
@@ -89,7 +93,7 @@ public class CadastroActivity extends AppCompatActivity {
                     }
                 }
 
-                dataImagem = new SimpleDateFormat("dd.MM.yyyy - HH:mm:ss").format(new Date());
+                dataImagem = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
 
                 for(String endImagem: endImagemArray){
                     imagemBD = new ImagemBD();
@@ -117,6 +121,18 @@ public class CadastroActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                for(String endImage: endImagemArray){
+                    String srcFileDelete = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + endImage.substring(100);
+                    File fdelete = new File(srcFileDelete);
+                    if (fdelete.exists()) {
+                        if (fdelete.delete()) {
+                            Log.i("DELETE", "deletou!!!");
+                        } else {
+                            Log.i("DELETE", "não deletou!!!");
+                        }
+                    }
+                }
+
                 finish();
             }
         });
