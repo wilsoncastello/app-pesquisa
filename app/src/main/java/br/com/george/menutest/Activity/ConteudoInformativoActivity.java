@@ -26,7 +26,6 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
     private String titulo;
     private int imagem;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
