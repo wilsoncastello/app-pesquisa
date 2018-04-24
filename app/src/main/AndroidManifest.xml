@@ -35,7 +35,7 @@
             android:name=".Activity.GaleriaImagensActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.DatalhesImagemActivity"
+            android:name=".Activity.ImagemGaleriaActivity"
             android:parentActivityName=".Activity.GaleriaImagensActivity"
             android:theme="@style/ActionBarDetails" />
         <activity

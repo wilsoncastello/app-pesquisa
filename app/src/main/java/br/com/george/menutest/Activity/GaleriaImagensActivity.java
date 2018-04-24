@@ -11,11 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +32,10 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
 
     private SectionedRecyclerViewAdapter sectionAdapter;
 
-    private List<Image> imagensCategoria1;
-    private List<Image> imagensCategoria2;
-    private List<Image> imagensCategoria3;
-    private List<Image> imagensCategoria4;
+    private ArrayList<Image> imagensCategoria1;
+    private ArrayList<Image> imagensCategoria2;
+    private ArrayList<Image> imagensCategoria3;
+    private ArrayList<Image> imagensCategoria4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,52 +127,52 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
 
         return array;
     }
-    private List<Image> populateCategoria1(){
+    private ArrayList<Image> populateCategoria1(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(R.drawable.img_card_1, "Image 1-1"));
-        array.add(new Image(R.drawable.img_card_2, "Image 2-1"));
-        array.add(new Image(R.drawable.img_video2, "Image 3-1"));
-        array.add(new Image(R.drawable.img_video3, "Image 4-1"));
-        array.add(new Image(R.drawable.img_card_1, "Image 5-1"));
-        array.add(new Image(R.drawable.img_card_2, "Image 6-1"));
+        array.add(new Image(11, R.drawable.img_card_1, "Image 1-1"));
+        array.add(new Image(12, R.drawable.img_card_2, "Image 1-2"));
+        array.add(new Image(13, R.drawable.img_video2, "Image 1-3"));
+        array.add(new Image(14, R.drawable.img_video3, "Image 1-4"));
+        array.add(new Image(15, R.drawable.img_card_1, "Image 1-5"));
+        array.add(new Image(16, R.drawable.img_card_2, "Image 1-6"));
 
         return array;
     }
-    private List<Image> populateCategoria2(){
+    private ArrayList<Image> populateCategoria2(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(R.drawable.img_card_1, "Image 1-2"));
-        array.add(new Image(R.drawable.img_card_2, "Image 2-2"));
-        array.add(new Image(R.drawable.img_video2, "Image 3-2"));
-        array.add(new Image(R.drawable.img_video3, "Image 4-2"));
-        array.add(new Image(R.drawable.img_card_1, "Image 5-2"));
-        array.add(new Image(R.drawable.img_card_2, "Image 6-2"));
+        array.add(new Image(21, R.drawable.img_card_1, "Image 2-1"));
+        array.add(new Image(22, R.drawable.img_card_2, "Image 2-2"));
+        array.add(new Image(23, R.drawable.img_video2, "Image 2-3"));
+        array.add(new Image(24, R.drawable.img_video3, "Image 2-4"));
+        array.add(new Image(25, R.drawable.img_card_1, "Image 2-5"));
+        array.add(new Image(26, R.drawable.img_card_2, "Image 2-6"));
 
         return array;
     }
-    private List<Image> populateCategoria3(){
+    private ArrayList<Image> populateCategoria3(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(R.drawable.img_card_1, "Image 1-3"));
-        array.add(new Image(R.drawable.img_card_2, "Image 2-3"));
-        array.add(new Image(R.drawable.img_video2, "Image 3-3"));
-        array.add(new Image(R.drawable.img_video3, "Image 4-3"));
-        array.add(new Image(R.drawable.img_card_1, "Image 5-3"));
-        array.add(new Image(R.drawable.img_card_2, "Image 6-3"));
+        array.add(new Image(31, R.drawable.img_card_1, "Image 3-1"));
+        array.add(new Image(32, R.drawable.img_card_2, "Image 3-2"));
+        array.add(new Image(33, R.drawable.img_video2, "Image 3-3"));
+        array.add(new Image(34, R.drawable.img_video3, "Image 3-4"));
+        array.add(new Image(35, R.drawable.img_card_1, "Image 3-5"));
+        array.add(new Image(36, R.drawable.img_card_2, "Image 3-6"));
 
         return array;
     }
-    private List<Image> populateCategoria4(){
+    private ArrayList<Image> populateCategoria4(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(R.drawable.img_card_1, "Image 1-4"));
-        array.add(new Image(R.drawable.img_card_2, "Image 2-4"));
-        array.add(new Image(R.drawable.img_video2, "Image 3-4"));
-        array.add(new Image(R.drawable.img_video3, "Image 4-4"));
-        array.add(new Image(R.drawable.img_card_1, "Image 5-4"));
-        array.add(new Image(R.drawable.img_card_2, "Image 6-4"));
-        array.add(new Image(R.drawable.img_card_1, "Image 7-4"));
+        array.add(new Image(41, R.drawable.img_card_1, "Image 4-1"));
+        array.add(new Image(42, R.drawable.img_card_2, "Image 4-2"));
+        array.add(new Image(43, R.drawable.img_video2, "Image 4-3"));
+        array.add(new Image(44, R.drawable.img_video3, "Image 4-4"));
+        array.add(new Image(45, R.drawable.img_card_1, "Image 4-5"));
+        array.add(new Image(46, R.drawable.img_card_2, "Image 4-6"));
+        array.add(new Image(47, R.drawable.img_card_1, "Image 4-7"));
 
         return array;
     }
@@ -180,10 +180,10 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
     private class ExpandableSection extends StatelessSection {
 
         String title;
-        List<Image> list;
+        ArrayList<Image> list;
         boolean expanded = false;
 
-        ExpandableSection(String title, List<Image> list) {
+        ExpandableSection(String title, ArrayList<Image> list) {
             super(SectionParameters.builder()
                     .itemResourceId(R.layout.item_galeria_imagens)
                     .headerResourceId(R.layout.grupo_categoria)
@@ -191,7 +191,7 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
 
             this.title = title;
             this.list = list;
-        }
+         }
 
         @Override
         public int getContentItemsTotal() {
@@ -207,21 +207,29 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
         public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
             final ItemViewHolder itemHolder = (ItemViewHolder) holder;
 
+            final int idImage = list.get(position).getId();
             final int resourceImage = list.get(position).getEndImage();
             final String tituloImage = list.get(position).getTitulo();
+
+            final ArrayList<Integer> endImages = new ArrayList<>();
+            final ArrayList<Integer> idsImages = new ArrayList<>();
+            for (Image img: list){
+                endImages.add(img.getEndImage());
+                idsImages.add(img.getId());
+                Log.i("OBJETO", img.getTitulo());
+            }
 
             itemHolder.imageItem.setImageResource(resourceImage);
 
             itemHolder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(GaleriaImagensActivity.this, String.format("Clicked on position #%s of Section %s",
-                            sectionAdapter.getPositionInSection(itemHolder.getAdapterPosition()), title),
-                            Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(GaleriaImagensActivity.this, DatalhesImagemActivity.class);
+                    Intent intent = new Intent(GaleriaImagensActivity.this, ImagemGaleriaActivity.class);
                     intent.putExtra("title", tituloImage);
                     intent.putExtra("image", resourceImage);
+                    intent.putExtra("id", idImage);
+                    intent.putExtra("ids", idsImages);
+                    intent.putExtra("endImages", endImages);
                     startActivity(intent);
                 }
             });
