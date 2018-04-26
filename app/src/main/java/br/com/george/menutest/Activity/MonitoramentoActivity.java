@@ -22,6 +22,7 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
     private TextView titulo;
     private WebView descricao;
     private WebView descricaoSmall;
+    private WebView descricaoMedium;
     private String textoDescricao;
     private ImageView btIniciarLeitor;
     private ImageView btVerificarBanco;
@@ -54,6 +55,7 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
 
         titulo = (TextView) findViewById(R.id.titulo_monitoramento);
         descricao = (WebView) findViewById(R.id.descricao_monitoramento);
+        descricaoMedium = (WebView) findViewById(R.id.descricao_monitoramento_medium);
         descricaoSmall = (WebView) findViewById(R.id.descricao_monitoramento_small);
         btIniciarLeitor = (ImageView) findViewById(R.id.bt_iniciar_leitor);
         btVerificarBanco = (ImageView) findViewById(R.id.bt_verificar_banco);
@@ -61,7 +63,10 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
         titulo.setText("Porque nós o usamos?");
         if(descricao != null){
             descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        } else{
+        } else if(descricaoMedium != null){
+            descricaoMedium.loadData("<p style=\"color:#616161; text-align: justify; font-size:16px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        }
+        else{
             descricaoSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
         }
 

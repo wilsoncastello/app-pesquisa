@@ -14,17 +14,20 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import br.com.george.menutest.Model.Image;
 import br.com.george.menutest.R;
 
 public class SlideGaleriaAdapter extends PagerAdapter {
 
-    private ArrayList<Integer> images;
+    private ArrayList<Image> images;
     private LayoutInflater inflater;
+    private int id;
     private Context context;
 
-    public SlideGaleriaAdapter(Context context, ArrayList<Integer> images) {
+    public SlideGaleriaAdapter(Context context, ArrayList<Image> images, int id) {
         this.context = context;
         this.images = images;
+        this.id = id;
         inflater = LayoutInflater.from(context);
     }
 
@@ -47,11 +50,8 @@ public class SlideGaleriaAdapter extends PagerAdapter {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
-        Bitmap bitmap = BitmapFactory.decodeResource(view.getResources(), images.get(position), options);
+        Bitmap bitmap = BitmapFactory.decodeResource(view.getResources(), images.get(position).getEndImage(), options);
 
-//        Matrix matrix = new Matrix();
-//        matrix.postRotate(90);
-//        Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         Glide.with(context).load(bitmap).into(myImage);
         view.addView(myImageLayout, 0);
 

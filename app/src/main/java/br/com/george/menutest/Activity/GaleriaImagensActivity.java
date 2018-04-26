@@ -130,49 +130,49 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
     private ArrayList<Image> populateCategoria1(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(11, R.drawable.img_card_1, "Image 1-1"));
-        array.add(new Image(12, R.drawable.img_card_2, "Image 1-2"));
-        array.add(new Image(13, R.drawable.img_video2, "Image 1-3"));
-        array.add(new Image(14, R.drawable.img_video3, "Image 1-4"));
-        array.add(new Image(15, R.drawable.img_card_1, "Image 1-5"));
-        array.add(new Image(16, R.drawable.img_card_2, "Image 1-6"));
+        array.add(new Image(11, R.drawable.img_card_1, "Image 1-1", 0));
+        array.add(new Image(12, R.drawable.img_card_2, "Image 1-2", 1));
+        array.add(new Image(13, R.drawable.img_video2, "Image 1-3", 2));
+        array.add(new Image(14, R.drawable.img_video3, "Image 1-4", 3));
+        array.add(new Image(15, R.drawable.img_card_1, "Image 1-5", 4));
+        array.add(new Image(16, R.drawable.img_card_2, "Image 1-6", 5));
 
         return array;
     }
     private ArrayList<Image> populateCategoria2(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(21, R.drawable.img_card_1, "Image 2-1"));
-        array.add(new Image(22, R.drawable.img_card_2, "Image 2-2"));
-        array.add(new Image(23, R.drawable.img_video2, "Image 2-3"));
-        array.add(new Image(24, R.drawable.img_video3, "Image 2-4"));
-        array.add(new Image(25, R.drawable.img_card_1, "Image 2-5"));
-        array.add(new Image(26, R.drawable.img_card_2, "Image 2-6"));
+        array.add(new Image(21, R.drawable.img_card_1, "Image 2-1", 0));
+        array.add(new Image(22, R.drawable.img_card_2, "Image 2-2", 1));
+        array.add(new Image(23, R.drawable.img_video2, "Image 2-3", 2));
+        array.add(new Image(24, R.drawable.img_video3, "Image 2-4", 3));
+        array.add(new Image(25, R.drawable.img_card_1, "Image 2-5", 4));
+        array.add(new Image(26, R.drawable.img_card_2, "Image 2-6", 5));
 
         return array;
     }
     private ArrayList<Image> populateCategoria3(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(31, R.drawable.img_card_1, "Image 3-1"));
-        array.add(new Image(32, R.drawable.img_card_2, "Image 3-2"));
-        array.add(new Image(33, R.drawable.img_video2, "Image 3-3"));
-        array.add(new Image(34, R.drawable.img_video3, "Image 3-4"));
-        array.add(new Image(35, R.drawable.img_card_1, "Image 3-5"));
-        array.add(new Image(36, R.drawable.img_card_2, "Image 3-6"));
+        array.add(new Image(31, R.drawable.img_card_1, "Image 3-1", 0));
+        array.add(new Image(32, R.drawable.img_card_2, "Image 3-2", 1));
+        array.add(new Image(33, R.drawable.img_video2, "Image 3-3", 2));
+        array.add(new Image(34, R.drawable.img_video3, "Image 3-4", 3));
+        array.add(new Image(35, R.drawable.img_card_1, "Image 3-5", 4));
+        array.add(new Image(36, R.drawable.img_card_2, "Image 3-6", 5));
 
         return array;
     }
     private ArrayList<Image> populateCategoria4(){
         ArrayList<Image> array = new ArrayList<>();
 
-        array.add(new Image(41, R.drawable.img_card_1, "Image 4-1"));
-        array.add(new Image(42, R.drawable.img_card_2, "Image 4-2"));
-        array.add(new Image(43, R.drawable.img_video2, "Image 4-3"));
-        array.add(new Image(44, R.drawable.img_video3, "Image 4-4"));
-        array.add(new Image(45, R.drawable.img_card_1, "Image 4-5"));
-        array.add(new Image(46, R.drawable.img_card_2, "Image 4-6"));
-        array.add(new Image(47, R.drawable.img_card_1, "Image 4-7"));
+        array.add(new Image(41, R.drawable.img_card_1, "Image 4-1", 0));
+        array.add(new Image(42, R.drawable.img_card_2, "Image 4-2", 1));
+        array.add(new Image(43, R.drawable.img_video2, "Image 4-3", 2));
+        array.add(new Image(44, R.drawable.img_video3, "Image 4-4", 3));
+        array.add(new Image(45, R.drawable.img_card_1, "Image 4-5", 4));
+        array.add(new Image(46, R.drawable.img_card_2, "Image 4-6", 5));
+        array.add(new Image(47, R.drawable.img_card_1, "Image 4-7", 6));
 
         return array;
     }
@@ -209,13 +209,16 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
 
             final int idImage = list.get(position).getId();
             final int resourceImage = list.get(position).getEndImage();
-            final String tituloImage = list.get(position).getTitulo();
+            final int positionImage = list.get(position).getPosition();
 
             final ArrayList<Integer> endImages = new ArrayList<>();
             final ArrayList<Integer> idsImages = new ArrayList<>();
+            final ArrayList<Integer> positionsImages = new ArrayList<>();
+
             for (Image img: list){
                 endImages.add(img.getEndImage());
                 idsImages.add(img.getId());
+                positionsImages.add(img.getPosition());
                 Log.i("OBJETO", img.getTitulo());
             }
 
@@ -225,11 +228,10 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(GaleriaImagensActivity.this, ImagemGaleriaActivity.class);
-                    intent.putExtra("title", tituloImage);
-                    intent.putExtra("image", resourceImage);
                     intent.putExtra("id", idImage);
                     intent.putExtra("ids", idsImages);
                     intent.putExtra("endImages", endImages);
+                    intent.putExtra("position", positionsImages);
                     startActivity(intent);
                 }
             });

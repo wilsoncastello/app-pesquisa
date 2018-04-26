@@ -31,6 +31,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
     private TextView titulo;
     private WebView descricao;
     private WebView descricaoSmall;
+    private WebView descricaoMedium;
     private String textoDescricao;
     private ImageView btAbreCamera;
     private ImageView btAbreImagem;
@@ -67,6 +68,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
 
         titulo = (TextView) findViewById(R.id.titulo_diagnostico);
         descricao = (WebView) findViewById(R.id.descricao_diagnostico);
+        descricaoMedium = (WebView) findViewById(R.id.descricao_diagnostico_medium);
         descricaoSmall = (WebView) findViewById(R.id.descricao_diagnostico_small);
         btAbreCamera = (ImageView) findViewById(R.id.bt_abrir_camera);
         btAbreImagem = (ImageView) findViewById(R.id.bt_abrir_imagem);
@@ -74,6 +76,8 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
         titulo.setText("Porque nós o usamos?");
         if(descricao != null){
             descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
+        } else if (descricaoMedium != null){
+            descricaoMedium.loadData("<p style=\"color:#616161; text-align: justify; font-size:16px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
         } else{
             descricaoSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
         }
