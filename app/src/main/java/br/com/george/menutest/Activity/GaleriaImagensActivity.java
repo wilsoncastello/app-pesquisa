@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -204,34 +203,27 @@ public class GaleriaImagensActivity extends AppCompatActivity implements Navigat
         }
 
         @Override
-        public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
+        public void onBindItemViewHolder(RecyclerView.ViewHolder holder, final int position) {
             final ItemViewHolder itemHolder = (ItemViewHolder) holder;
 
-            final int idImage = list.get(position).getId();
             final int resourceImage = list.get(position).getEndImage();
             final int positionImage = list.get(position).getPosition();
 
             final ArrayList<Integer> endImages = new ArrayList<>();
-            final ArrayList<Integer> idsImages = new ArrayList<>();
             final ArrayList<Integer> positionsImages = new ArrayList<>();
 
             for (Image img: list){
                 endImages.add(img.getEndImage());
-                idsImages.add(img.getId());
                 positionsImages.add(img.getPosition());
-                Log.i("OBJETO", img.getTitulo());
             }
 
             itemHolder.imageItem.setImageResource(resourceImage);
-
             itemHolder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(GaleriaImagensActivity.this, ImagemGaleriaActivity.class);
-                    intent.putExtra("id", idImage);
-                    intent.putExtra("ids", idsImages);
                     intent.putExtra("endImages", endImages);
-                    intent.putExtra("position", positionsImages);
+                    intent.putExtra("position", positionImage);
                     startActivity(intent);
                 }
             });

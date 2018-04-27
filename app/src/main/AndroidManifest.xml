@@ -11,9 +11,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ifsc"
+        android:icon="@mipmap/ic_rfid_ifsc"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

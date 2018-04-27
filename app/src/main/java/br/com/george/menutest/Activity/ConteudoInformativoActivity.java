@@ -46,6 +46,7 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
             imagem = extra.getInt("imagem");
         }
 
+        setTitle(titulo);
         tituloHeader.setText(titulo);
 
         imageHeader.setImageResource(imagem);

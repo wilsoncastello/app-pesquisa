@@ -6,6 +6,17 @@
     <string name="primeiro_card_principal">Informativo</string>
     <string name="segundo_card_principal">Diagnóstico</string>
     <string name="terceiro_card_principal">Monitoramento</string>
+    <string name="TextoHtml">
+        <big>Texto grande</big>\n
+        <small>Texto pequeno</small>\n
+        <b>Texto em bold</b>\n
+        <strike>Texto "riscado"</strike>\n
+        Texto<sub>Texto subscrito</sub>\n
+        Texto<sup>Texto sobrescrito</sup>\n
+        <u>Texto Underline</u>\n
+        <font color='red'>Texto em vermelho</font>\n
+        <font size='20' color='green' >Texto size e cor</font>
+    </string>
 
     <string-array name="image_ids">
         <item>@drawable/img_card_2</item>
