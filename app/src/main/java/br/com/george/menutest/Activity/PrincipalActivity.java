@@ -15,8 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import java.io.File;
 
@@ -25,9 +23,6 @@ import br.com.george.menutest.R;
 
 public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ImageView buttonInformativo;
-    private ImageView buttonDiagnostico;
-    private ImageView buttonMonitoramento;
     private File pastaImagesTemp;
     private String[] permissoesNecessarias = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -54,34 +49,6 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        buttonInformativo = (ImageView) findViewById(R.id.bt_informativo);
-        buttonDiagnostico = (ImageView) findViewById(R.id.bt_diagnostico);
-        buttonMonitoramento = (ImageView) findViewById(R.id.bt_monitoramento);
-
-        buttonInformativo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PrincipalActivity.this, InformativoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        buttonDiagnostico.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PrincipalActivity.this, DiagnosticoActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        buttonMonitoramento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PrincipalActivity.this, MonitoramentoActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

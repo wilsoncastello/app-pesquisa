@@ -8,4 +8,5 @@
     <color name="blue">#c37382b7</color>
     <color name="text_shadow">#7F000000</color>
     <color name="text_shadow_white">#FFFFFF</color>
+    <color name="color_titulo_sobre">#424242</color>
 </resources>
