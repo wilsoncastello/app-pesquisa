@@ -41,15 +41,15 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="8dp"
         android:layout_below="@+id/img_header_info">
 
-        <WebView
-            android:id="@+id/web_view_sobre_small"
+        <TextView
+            android:id="@+id/textSobre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/img_header_info" />
+            android:textSize="18sp"
+            android:layout_below="@+id/img_header_info"/>
     </ScrollView>
 
 </RelativeLayout>

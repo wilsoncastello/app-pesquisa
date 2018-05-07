@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,17 +13,19 @@ import br.com.george.menutest.R;
 
 public class ConteudoInformativoActivity extends AppCompatActivity {
 
-    private WebView webViewParagrafo;
-    private WebView webViewParagrafoSmall;
-    private WebView webViewParagrafo2;
-    private WebView webViewParagrafo2Small;
+    private TextView paragrafoUm;
+    private TextView paragrafoDois;
     private ImageView imageHeader;
+    private ImageView imageUm;
+    private ImageView imageDois;
+    private ImageView imageTres;
     private TextView tituloHeader;
-    private TextView linkInfo;
     private ArrayList<String> paragrafos;
     private ArrayList<String> paragrafos2;
     private String titulo;
     private int imagem;
+    private ArrayList<Integer> imagensEnd;
+    private Integer[] imagemAtual = new Integer[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,12 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageHeader = (ImageView) findViewById(R.id.img_header_info);
-        linkInfo = (TextView) findViewById(R.id.link_informativo);
         tituloHeader = (TextView) findViewById(R.id.titulo_info);
+        paragrafoDois = (TextView) findViewById(R.id.paragrafoDois);
+        paragrafoUm = (TextView) findViewById(R.id.paragrafoUm);
+        imageUm = (ImageView) findViewById(R.id.image_info_um);
+        imageDois = (ImageView) findViewById(R.id.image_info_dois);
+        imageTres = (ImageView) findViewById(R.id.image_info_tres);
 
         Bundle extra = getIntent().getExtras();
 
@@ -44,6 +49,7 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
             paragrafos2 = extra.getStringArrayList("paragrafos2");
             titulo = extra.getString("titulo");
             imagem = extra.getInt("imagem");
+            imagensEnd = extra.getIntegerArrayList("imagens");
         }
 
         setTitle(titulo);
@@ -51,69 +57,54 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
 
         imageHeader.setImageResource(imagem);
 
-        int qtdParagrafos = paragrafos.size();
-        int qtdParagrafos2 = paragrafos.size();
-
-        String codeWeb = "";
-        String codeWebSmall = "";
-
-        for (int i = 0; i <= (qtdParagrafos - 1); i++) {
-            codeWeb += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:18px\">" + paragrafos.get(i) + "</p>";
-        }
-        for (int i = 0; i <= (qtdParagrafos - 1); i++) {
-            codeWebSmall += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:14px\">" + paragrafos.get(i) + "</p>";
+        int cont = 0;
+        for (int endImagemAtual: imagensEnd){
+            imagemAtual[cont] = endImagemAtual;
+            cont++;
         }
 
-        webViewParagrafo = (WebView) findViewById(R.id.web_view_paragrafo);
-        webViewParagrafoSmall = (WebView) findViewById(R.id.web_view_paragrafo_small);
+        imageUm.setImageResource(imagemAtual[0]);
+        imageDois.setImageResource(imagemAtual[1]);
+        imageTres.setImageResource(imagemAtual[2]);
 
-        if (webViewParagrafo != null){
-            webViewParagrafo.loadData(
-                    codeWeb,
-                    "text/html",
-                    "UTF-8"
-            );
-        } else {
-            webViewParagrafoSmall.loadData(
-                    codeWebSmall,
-                    "text/html",
-                    "UTF-8"
-            );
+        for(String p: paragrafos){
+            paragrafoUm.setText(p);
+        }
+        for(String p: paragrafos2){
+            paragrafoDois.setText(p);
         }
 
-        linkInfo.setOnClickListener(new View.OnClickListener() {
+
+        imageUm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(ConteudoInformativoActivity.this, GaleriaImagensActivity.class);
+                Intent intent = new Intent(ConteudoInformativoActivity.this, ImagemInformativoActivity.class);
+                intent.putExtra("endImages", imagensEnd);
+                intent.putExtra("position", 0);
                 startActivity(intent);
             }
         });
 
-        codeWeb = "";
-        codeWebSmall = "";
+        imageDois.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ConteudoInformativoActivity.this, ImagemInformativoActivity.class);
+                intent.putExtra("endImages", imagensEnd);
+                intent.putExtra("position", 1);
+                startActivity(intent);
+            }
+        });
 
-        for (int i = 0; i <= (qtdParagrafos2 - 1); i++) {
-            codeWeb += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:18px\">" + paragrafos2.get(i) + "</p>";
-        }
-        for (int i = 0; i <= (qtdParagrafos2 - 1); i++) {
-            codeWebSmall += "<p style=\"color:#616161; text-align: justify; margin:0px; font-size:14px\">" + paragrafos2.get(i) + "</p>";
-        }
-        webViewParagrafo2 = (WebView) findViewById(R.id.web_view_paragrafo_2);
-        webViewParagrafo2Small = (WebView) findViewById(R.id.web_view_paragrafo_2_small);
+        imageTres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ConteudoInformativoActivity.this, ImagemInformativoActivity.class);
+                intent.putExtra("endImages", imagensEnd);
+                intent.putExtra("position", 2);
+                startActivity(intent);
+            }
+        });
 
-        if (webViewParagrafo2 != null){
-            webViewParagrafo2.loadData(
-                    codeWeb,
-                    "text/html",
-                    "UTF-8"
-            );
-        } else {
-            webViewParagrafo2Small.loadData(
-                    codeWebSmall,
-                    "text/html",
-                    "UTF-8"
-            );
-        }
     }
 
 }

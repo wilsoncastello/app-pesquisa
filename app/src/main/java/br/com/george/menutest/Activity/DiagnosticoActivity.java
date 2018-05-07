@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,9 +28,7 @@ import br.com.george.menutest.R;
 public class DiagnosticoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView titulo;
-    private WebView descricao;
-    private WebView descricaoSmall;
-    private WebView descricaoMedium;
+    private TextView textDiagnostico;
     private String textoDescricao;
     private ImageView btAbreCamera;
     private ImageView btAbreImagem;
@@ -46,7 +43,7 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnostico);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Diagnósticos");
+        toolbar.setTitle("Diagnóstico");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -67,21 +64,12 @@ public class DiagnosticoActivity extends AppCompatActivity implements Navigation
                 "humor, e coisas do gênero).";
 
         titulo = (TextView) findViewById(R.id.titulo_diagnostico);
-        descricao = (WebView) findViewById(R.id.descricao_diagnostico);
-        descricaoMedium = (WebView) findViewById(R.id.descricao_diagnostico_medium);
-        descricaoSmall = (WebView) findViewById(R.id.descricao_diagnostico_small);
+        textDiagnostico = (TextView) findViewById(R.id.text_diagnostico);
         btAbreCamera = (ImageView) findViewById(R.id.bt_abrir_camera);
         btAbreImagem = (ImageView) findViewById(R.id.bt_abrir_imagem);
 
         titulo.setText("Porque nós o usamos?");
-        if(descricao != null){
-            descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        } else if (descricaoMedium != null){
-            descricaoMedium.loadData("<p style=\"color:#616161; text-align: justify; font-size:16px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        } else{
-            descricaoSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        }
-
+        textDiagnostico.setText(textoDescricao);
 
         btAbreCamera.setOnClickListener(new View.OnClickListener() {
             @Override

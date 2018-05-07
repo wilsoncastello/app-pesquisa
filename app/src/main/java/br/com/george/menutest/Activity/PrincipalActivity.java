@@ -98,6 +98,8 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
+            Intent intent = new Intent(PrincipalActivity.this, InformativoActivity.class);
+            startActivity(intent);
         }  else if (id == R.id.nav_galeria_imagens) {
             Intent intent = new Intent(PrincipalActivity.this, GaleriaImagensActivity.class);
             startActivity(intent);

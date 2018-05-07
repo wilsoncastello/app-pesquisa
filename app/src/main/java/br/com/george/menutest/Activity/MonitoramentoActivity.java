@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +19,11 @@ import br.com.george.menutest.R;
 public class MonitoramentoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private TextView titulo;
-    private WebView descricao;
-    private WebView descricaoSmall;
-    private WebView descricaoMedium;
     private String textoDescricao;
     private ImageView btIniciarLeitor;
     private ImageView btVerificarBanco;
+
+    private TextView textMonitoramento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,21 +52,13 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
                 "humor, e coisas do gênero).";
 
         titulo = (TextView) findViewById(R.id.titulo_monitoramento);
-        descricao = (WebView) findViewById(R.id.descricao_monitoramento);
-        descricaoMedium = (WebView) findViewById(R.id.descricao_monitoramento_medium);
-        descricaoSmall = (WebView) findViewById(R.id.descricao_monitoramento_small);
         btIniciarLeitor = (ImageView) findViewById(R.id.bt_iniciar_leitor);
         btVerificarBanco = (ImageView) findViewById(R.id.bt_verificar_banco);
 
+        textMonitoramento = (TextView) findViewById(R.id.text_monitoramento);
+
         titulo.setText("Porque nós o usamos?");
-        if(descricao != null){
-            descricao.loadData("<p style=\"color:#616161; text-align: justify; font-size:18px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        } else if(descricaoMedium != null){
-            descricaoMedium.loadData("<p style=\"color:#616161; text-align: justify; font-size:16px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        }
-        else{
-            descricaoSmall.loadData("<p style=\"color:#616161; text-align: justify; font-size:14px\">" + textoDescricao + "</p>", "text/html", "UTF-8");
-        }
+        textMonitoramento.setText(textoDescricao);
 
         btIniciarLeitor.setOnClickListener(new View.OnClickListener() {
             @Override

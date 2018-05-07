@@ -15,7 +15,7 @@
         Texto<sup>Texto sobrescrito</sup>\n
         <u>Texto Underline</u>\n
         <font color='red'>Texto em vermelho</font>\n
-        <font size='20' color='green' >Texto size e cor</font>
+        <font color='green' size='20'>Texto size e cor</font>
     </string>
 
     <string-array name="image_ids">

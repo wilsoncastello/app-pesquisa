@@ -11,7 +11,7 @@
         android:background="@android:color/black">
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/pagerGaleria"
+            android:id="@+id/pagerInfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true" />
@@ -22,19 +22,19 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/btnVoltarGaleria"
+                android:id="@+id/btnVoltarInfo"
                 app:srcCompat="@drawable/icon_voltar_imagens"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="16dp"
-                android:layout_alignTop="@id/pagerGaleria"
+                android:layout_alignTop="@id/pagerInfo"
                 android:adjustViewBounds="true"/>
 
         </LinearLayout>
 
 
         <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/indicatorGaleria"
+            android:id="@+id/indicatorInfo"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"/>
