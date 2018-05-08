@@ -47,7 +47,7 @@ public class SlideGaleriaAdapter extends PagerAdapter {
         ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.imageSlideGaleria);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 1;
+        options.inSampleSize = 2;
         Bitmap bitmap = BitmapFactory.decodeResource(view.getResources(), images.get(position), options);
 
         Glide.with(context).load(bitmap).into(myImage);
