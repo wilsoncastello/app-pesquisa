@@ -22,6 +22,7 @@ public class ImagemEtiquetaActivity extends AppCompatActivity {
     private ImageView btnVoltarEtiqueta;
     private ArrayList<String> imagensArray = new ArrayList<>();
     private ArrayList<String> datasArray = new ArrayList<>();
+    private ArrayList<String> descricaoArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,22 +43,35 @@ public class ImagemEtiquetaActivity extends AppCompatActivity {
 
         if (extra != null) {
             imagensArray = extra.getStringArrayList("image_etiqueta");
-        }
-        if (extra != null) {
             datasArray = extra.getStringArrayList("data_etiqueta");
+            descricaoArray = extra.getStringArrayList("descricao_etiqueta");
         }
 
         ImagemBD imagemBD;
         final ArrayList<ImagemBD> imagens = new ArrayList<>();
 
+        int i = 0;
+        String[] vetorDatas = new String[datasArray.size()];
+        for(String data: datasArray){
+            vetorDatas[i] = data;
+            i++;
+        }
+
+        int j = 0;
+        String[] vetorDescricao = new String[descricaoArray.size()];
+        for(String descricao: descricaoArray){
+            vetorDescricao[j] = descricao;
+            j++;
+        }
+
+        int k = 0;
         for(String img: imagensArray){
             imagemBD = new ImagemBD();
             imagemBD.setImagem(img);
-            for(String data: datasArray){
-                imagemBD.setData(data);
-                break;
-            }
+            imagemBD.setData(vetorDatas[k]);
+            imagemBD.setDescricao(vetorDescricao[k]);
             imagens.add(imagemBD);
+            k++;
         }
 
         mPager = (ViewPager) findViewById(R.id.pagerEtiqueta);

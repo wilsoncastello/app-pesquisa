@@ -1,6 +1,7 @@
 package br.com.george.menutest.Activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +32,7 @@ import java.util.List;
 
 import br.com.george.menutest.Adapter.EndImagensAdapter;
 import br.com.george.menutest.Database.Database;
+import br.com.george.menutest.Model.DescricaoImagem;
 import br.com.george.menutest.Model.ImagemBD;
 import br.com.george.menutest.Model.Tag;
 import br.com.george.menutest.R;
@@ -49,6 +53,7 @@ public class CadastroActivity extends AppCompatActivity {
     private int codTagImagem;
     private ArrayAdapter adapter;
     private List<ImagemBD> imagens;
+    private List<DescricaoImagem> descImagens;
 
     static final int OPEN_CAMERA = 1;
 
@@ -60,6 +65,7 @@ public class CadastroActivity extends AppCompatActivity {
         setTitle("Cadastro de Etiquetas");
 
         endImagemArray = new ArrayList<>();
+        descImagens = new ArrayList<>();
 
         // Iniciando o banco
         database = new Database(CadastroActivity.this);
@@ -87,20 +93,35 @@ public class CadastroActivity extends AppCompatActivity {
                 database.salvarTag(tag);
 
                 List<Tag> tagsAux = database.buscarTodasTags();
-                for(Tag t: tagsAux){
-                    if(tag.getIdentificacao().equals(t.getIdentificacao())){
+                for (Tag t : tagsAux) {
+                    if (tag.getIdentificacao().equals(t.getIdentificacao())) {
                         codTagImagem = t.getCod();
                     }
                 }
 
                 dataImagem = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
 
-                for(String endImagem: endImagemArray){
+                int i = 0;
+                String[] vetorDescricao = new String[descImagens.size()];
+                String[] vetorEnd = new String[descImagens.size()];
+                for(DescricaoImagem d: descImagens){
+                    vetorDescricao[i] = d.getDescricao();
+                    vetorEnd[i] = d.getEndImagem();
+                    i++;
+                }
+
+                int j = 0;
+                for (String endImagem : endImagemArray) {
                     imagemBD = new ImagemBD();
                     imagemBD.setCodTag(codTagImagem);
                     imagemBD.setData(dataImagem);
                     imagemBD.setImagem(endImagem);
+                    if (endImagem.equals(vetorEnd[j])) {
+                        imagemBD.setDescricao(vetorDescricao[j]);
+                    }
+
                     database.salvarImagem(imagemBD);
+                    j++;
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroActivity.this);
@@ -121,7 +142,7 @@ public class CadastroActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(String endImage: endImagemArray){
+                for (String endImage : endImagemArray) {
                     String srcFileDelete = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + endImage.substring(100);
                     File fdelete = new File(srcFileDelete);
                     if (fdelete.exists()) {
@@ -178,6 +199,46 @@ public class CadastroActivity extends AppCompatActivity {
 
                 adapter = new EndImagensAdapter(CadastroActivity.this, endImagemArray);
                 listEndImagens.setAdapter(adapter);
+
+                listEndImagens.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(final AdapterView<?> adapterView, View view, final int position, long l) {
+
+                        final Dialog dialog = new Dialog(CadastroActivity.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.menu_cadastro);
+
+                        Button btnDescricao = (Button) dialog.findViewById(R.id.btnDescricaoCadastro);
+                        Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelarCadastro);
+                        final EditText editDescricao = (EditText) dialog.findViewById(R.id.editDescricao);
+
+                        btnDescricao.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (!editDescricao.equals("")) {
+                                    String endereco = endImagemArray.get(position);
+                                    String descricao = editDescricao.getText().toString();
+                                    DescricaoImagem descricaoImagem = new DescricaoImagem(endereco, descricao);
+
+                                    descImagens.add(descricaoImagem);
+                                    Toast.makeText(CadastroActivity.this, "Descrição inserida", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                } else {
+                                    Toast.makeText(CadastroActivity.this, "Preencha os campos", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        btnCancelar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        dialog.show();
+                    }
+                });
             } else {
                 Toast.makeText(CadastroActivity.this, "Ocorreu algum erro!", Toast.LENGTH_SHORT).show();
             }

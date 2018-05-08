@@ -9,7 +9,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //NOME DA BASE DE DADOS
     private static final String NOME_BANCO = "rfid.db";
     //VERSÃO DO BANCO DE DADOS
-    private static final int VERSAO_BANCO = 7;
+    private static final int VERSAO_BANCO = 8;
 
     public DatabaseHelper(Context context) {
         super(context, NOME_BANCO, null, VERSAO_BANCO);
@@ -30,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         stringBuilderCreateTableImagem.append("        idTag          INTEGER,                           ");
         stringBuilderCreateTableImagem.append("        data           TEXT,                              ");
         stringBuilderCreateTableImagem.append("        imagem         TEXT,                              ");
+        stringBuilderCreateTableImagem.append("        descricao      TEXT,                              ");
         stringBuilderCreateTableImagem.append("        FOREIGN KEY    (idTag)    REFERENCES  Tag(id)    )");
 
         db.execSQL(stringBuilderCreateTableTags.toString());

@@ -9,6 +9,7 @@ public class ImagemBD implements Serializable {
     private int codTag;
     private String imagem;
     private String data;
+    private String descricao;
 
     public int getCod() {
         return cod;
@@ -36,5 +37,12 @@ public class ImagemBD implements Serializable {
     }
     public void setData(String data) {
         this.data = data;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

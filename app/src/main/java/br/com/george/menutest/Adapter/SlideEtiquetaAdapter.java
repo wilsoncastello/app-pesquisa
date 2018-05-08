@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -48,13 +49,27 @@ public class SlideEtiquetaAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup view, int position) {
+    public Object instantiateItem(ViewGroup view, final int position) {
         View myImageLayout = inflater.inflate(R.layout.slide_etiqueta, view, false);
         ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.imageSlideEtiqueta);
+        ImageView btnDescricao = (ImageView) myImageLayout.findViewById(R.id.btnDescricaoEtiqueta);
         TextView dateImage = (TextView) myImageLayout.findViewById(R.id.dataImagemEtiqueta);
+        final TextView descricao = (TextView) myImageLayout.findViewById(R.id.descricaoImagemEtiqueta);
+        final LinearLayout layoutBtnDesc = (LinearLayout) myImageLayout.findViewById(R.id.layoutBtnDesc);
         Uri imageUri = Uri.parse(images.get(position).getImagem());
         try {
-//            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
+            btnDescricao.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(descricao.getText().equals("")){
+                        descricao.setText(images.get(position).getDescricao());
+                        layoutBtnDesc.setBackgroundColor(layoutBtnDesc.getResources().getColor(R.color.btnDescDesativado));
+                    } else {
+                        descricao.setText("");
+                        layoutBtnDesc.setBackgroundColor(layoutBtnDesc.getResources().getColor(R.color.btnDescAtivado));
+                    }
+                }
+            });
 
             String srcFile = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + images.get(position).getImagem().substring(100);
 

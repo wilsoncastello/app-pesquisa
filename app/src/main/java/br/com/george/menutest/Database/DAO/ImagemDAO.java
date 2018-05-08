@@ -24,6 +24,7 @@ public class ImagemDAO {
         contentValues.put("idTag", imagem.getCodTag());
         contentValues.put("data", imagem.getData());
         contentValues.put("imagem", imagem.getImagem());
+        contentValues.put("descricao", imagem.getDescricao());
 
         /*EXECUTANDO INSERT DE UM NOVO REGISTRO*/
         database.insert("Imagem", null, contentValues);
@@ -36,6 +37,7 @@ public class ImagemDAO {
         contentValues.put("idTag", imagem.getData());
         contentValues.put("data", imagem.getData());
         contentValues.put("imagem", imagem.getImagem());
+        contentValues.put("descricao", imagem.getDescricao());
 
         /*REALIZANDO UPDATE PELA CHAVE DA TABELA*/
         database.update("Imagem", contentValues, "id = ?", new String[]{Integer.toString(imagem.getCod())});
@@ -48,7 +50,7 @@ public class ImagemDAO {
 
     public ImagemBD buscarImagemId(int codigo) {
         ImagemBD imagemBD = new ImagemBD();
-        String[] colunas = new String[]{"id", "idTag", "data","imagem"};
+        String[] colunas = new String[]{"id", "idTag", "data","imagem", "descricao"};
 
         Cursor cursor = database.query("Imagem",colunas,"id ="+codigo, null,null,null,null);
 
@@ -59,6 +61,7 @@ public class ImagemDAO {
             imagemBD.setCodTag(cursor.getInt(1));
             imagemBD.setData(cursor.getString(2));
             imagemBD.setImagem(cursor.getString(3));
+            imagemBD.setDescricao(cursor.getString(4));
         }
         else {
             return null;
@@ -76,8 +79,9 @@ public class ImagemDAO {
         stringBuilderQuery.append(" SELECT id,            ");
         stringBuilderQuery.append("        idTag,         ");
         stringBuilderQuery.append("        data,          ");
-        stringBuilderQuery.append("        imagem         ");
-        stringBuilderQuery.append("  FROM  Imagem           ");
+        stringBuilderQuery.append("        imagem,         ");
+        stringBuilderQuery.append("        descricao      ");
+        stringBuilderQuery.append("  FROM  Imagem         ");
         stringBuilderQuery.append(" ORDER BY id           ");
 
         //CONSULTANDO OS REGISTROS CADASTRADOS
@@ -99,6 +103,7 @@ public class ImagemDAO {
             imagem.setCodTag(cursor.getInt(cursor.getColumnIndex("idTag")));
             imagem.setData(cursor.getString(cursor.getColumnIndex("data")));
             imagem.setImagem(cursor.getString(cursor.getColumnIndex("imagem")));
+            imagem.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
 
             //ADICIONANDO UMA PESSOA NA LISTA
             imagens.add(imagem);

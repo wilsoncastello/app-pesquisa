@@ -96,6 +96,7 @@ public class DatabaseActivity extends AppCompatActivity {
                                 ArrayList<String> imagensBancoEnd = new ArrayList<>();
 
                                 ArrayList<String> datasBanco = new ArrayList<>();
+                                ArrayList<String> descricaoBanco = new ArrayList<>();
 
                                 imagensBanco = database.buscarTodasImagens();
 
@@ -103,16 +104,19 @@ public class DatabaseActivity extends AppCompatActivity {
                                     if(imagemBD.getCodTag() == tagAtual.getCod()){
                                         imagensBancoEnd.add(imagemBD.getImagem());
                                         datasBanco.add(imagemBD.getData());
+                                        descricaoBanco.add(imagemBD.getDescricao());
                                     }
                                 }
 
                                 Intent intent = new Intent(DatabaseActivity.this, ImagemEtiquetaActivity.class);
                                 intent.putExtra("image_etiqueta", imagensBancoEnd);
                                 intent.putExtra("data_etiqueta", datasBanco);
+                                intent.putExtra("descricao_etiqueta", descricaoBanco);
 
                                 startActivity(intent);
                             }
                         }
+                        dialog.dismiss();
                     }
                 });
 
