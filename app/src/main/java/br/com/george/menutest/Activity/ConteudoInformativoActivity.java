@@ -1,6 +1,7 @@
 package br.com.george.menutest.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +16,7 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
 
     private TextView paragrafoUm;
     private TextView paragrafoDois;
+    private TextView linkVideo;
     private ImageView imageHeader;
     private ImageView imageUm;
     private ImageView imageDois;
@@ -23,9 +25,11 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
     private ArrayList<String> paragrafos;
     private ArrayList<String> paragrafos2;
     private String titulo;
+    private Uri uri;
     private int imagem;
     private ArrayList<Integer> imagensEnd;
     private Integer[] imagemAtual = new Integer[3];
+    private String video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
         imageUm = (ImageView) findViewById(R.id.image_info_um);
         imageDois = (ImageView) findViewById(R.id.image_info_dois);
         imageTres = (ImageView) findViewById(R.id.image_info_tres);
+        linkVideo = (TextView) findViewById(R.id.linkVideo);
 
         Bundle extra = getIntent().getExtras();
 
@@ -50,6 +55,7 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
             titulo = extra.getString("titulo");
             imagem = extra.getInt("imagem");
             imagensEnd = extra.getIntegerArrayList("imagens");
+            video = extra.getString("video");
         }
 
         setTitle(titulo);
@@ -101,6 +107,15 @@ public class ConteudoInformativoActivity extends AppCompatActivity {
                 Intent intent = new Intent(ConteudoInformativoActivity.this, ImagemInformativoActivity.class);
                 intent.putExtra("endImages", imagensEnd);
                 intent.putExtra("position", 2);
+                startActivity(intent);
+            }
+        });
+
+        linkVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uri = Uri.parse(video);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
         });

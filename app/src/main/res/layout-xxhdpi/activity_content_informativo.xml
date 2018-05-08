@@ -118,14 +118,25 @@
 
             </LinearLayout>
 
-        <TextView
-            android:id="@+id/paragrafoDois"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/paragrafoDois"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="20sp" />
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/linkVideo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Ver vídeo..."
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
-    </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

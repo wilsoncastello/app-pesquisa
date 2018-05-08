@@ -66,16 +66,16 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
         ArrayList<String> paragrafos2Card1 = new ArrayList<>();
         paragrafosCard1.add(p1c1);
         paragrafos2Card1.add(p2c1);
-
         ArrayList<Image> imagensParagrafo1 = new ArrayList<>();
         imagensParagrafo1 = createImagens(R.drawable.img_card_1, R.drawable.img_card_2, R.drawable.img_video2);
-
         String descricaoCard1 = p1c1.substring(0,200);
+        String video1 = "https://www.youtube.com/watch?v=Wuwd83m8pqM";
+
 
         Card card1 = new Card(
                 "Conhecendo o Cancro Europeu",
                 descricaoCard1,
-                 R.drawable.img_card_2, paragrafosCard1, paragrafos2Card1, imagensParagrafo1);
+                 R.drawable.img_card_2, paragrafosCard1, paragrafos2Card1, imagensParagrafo1, video1);
 
         String p1c2 = "Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de " +
                 "alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um" +
@@ -98,16 +98,16 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
         ArrayList<String> paragrafos2Card2 = new ArrayList<>();
         paragrafosCard2.add(p1c2);
         paragrafos2Card2.add(p2c2);
-
         ArrayList<Image> imagensParagrafo2 = new ArrayList<>();
         imagensParagrafo2 = createImagens(R.drawable.img_card_1, R.drawable.img_card_2, R.drawable.img_video2);
-
         String descricaoCard2 = p1c2.substring(0,200);
+        String video2 = "https://www.youtube.com/watch?v=Wuwd83m8pqM";
+
 
         Card card2 = new Card(
                 "Prevenindo o Cancro Europeu",
                  descricaoCard2,
-                 R.drawable.img_card_1, paragrafosCard2,paragrafos2Card2, imagensParagrafo2);
+                 R.drawable.img_card_1, paragrafosCard2,paragrafos2Card2, imagensParagrafo2, video2);
 
         String p1c3 = "Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de " +
                 "alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um" +
@@ -130,16 +130,15 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
         ArrayList<String> paragrafos2Card3 = new ArrayList<>();
         paragrafosCard3.add(p1c3);
         paragrafos2Card3.add(p2c3);
-
         ArrayList<Image> imagensParagrafo3 = new ArrayList<>();
         imagensParagrafo3 = createImagens(R.drawable.img_card_1, R.drawable.img_card_2, R.drawable.img_video2);
-
         String descricaoCard3 = p1c3.substring(0,200);
+        String video3 = "https://www.youtube.com/watch?v=Wuwd83m8pqM";
 
         Card card3 = new Card(
                 "Cancro no Brasil e no Mundo",
                  descricaoCard3,
-                 R.drawable.img_card_2, paragrafosCard3, paragrafos2Card3, imagensParagrafo3);
+                 R.drawable.img_card_2, paragrafosCard3, paragrafos2Card3, imagensParagrafo3, video3);
 
         String p1c4 = "Existem muitas variações disponíveis de passagens de Lorem Ipsum, mas a maioria sofreu algum tipo de " +
                 "alteração, seja por inserção de passagens com humor, ou palavras aleatórias que não parecem nem um" +
@@ -162,16 +161,15 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
         ArrayList<String> paragrafos2Card4 = new ArrayList<>();
         paragrafosCard4.add(p1c4);
         paragrafos2Card4.add(p2c4);
-
         ArrayList<Image> imagensParagrafo4 = new ArrayList<>();
         imagensParagrafo4 = createImagens(R.drawable.img_card_1, R.drawable.img_card_2, R.drawable.img_video2);
-
         String descricaoCard4 = p1c4.substring(0,200);
+        String video4 = "https://www.youtube.com/watch?v=Wuwd83m8pqM";
 
         Card card4 = new Card(
                 "Normas",
                  descricaoCard4,
-                 R.drawable.img_card_1, paragrafosCard4, paragrafos2Card4, imagensParagrafo4);
+                 R.drawable.img_card_1, paragrafosCard4, paragrafos2Card4, imagensParagrafo4, video4);
 
         cards = new ArrayList<>();
         cards.add(card1);
@@ -198,6 +196,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
                         intent.putExtra("titulo", auxCard.getTituloCard());
                         intent.putExtra("imagem", auxCard.getImgCardResource());
                         intent.putExtra("imagens", getEndImagens(auxCard.getImagens()));
+                        intent.putExtra("video", auxCard.getVideo());
 
                         startActivity(intent);
                         break;
@@ -210,6 +209,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
                         intent.putExtra("titulo", auxCard.getTituloCard());
                         intent.putExtra("imagem", auxCard.getImgCardResource());
                         intent.putExtra("imagens", getEndImagens(auxCard.getImagens()));
+                        intent.putExtra("video", auxCard.getVideo());
 
                         startActivity(intent);
                         break;
@@ -222,6 +222,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
                         intent.putExtra("titulo", auxCard.getTituloCard());
                         intent.putExtra("imagem", auxCard.getImgCardResource());
                         intent.putExtra("imagens", getEndImagens(auxCard.getImagens()));
+                        intent.putExtra("video", auxCard.getVideo());
 
                         startActivity(intent);
                         break;
@@ -234,6 +235,7 @@ public class InformativoActivity extends AppCompatActivity implements Navigation
                         intent.putExtra("titulo", auxCard.getTituloCard());
                         intent.putExtra("imagem", auxCard.getImgCardResource());
                         intent.putExtra("imagens", getEndImagens(auxCard.getImagens()));
+                        intent.putExtra("video", auxCard.getVideo());
 
                         startActivity(intent);
                         break;

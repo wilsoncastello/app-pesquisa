@@ -11,8 +11,9 @@ public class Card {
     private ArrayList<String> paragrafos;
     private ArrayList<String> paragrafos2;
     private ArrayList<Image> imagens;
+    private String video;
 
-    public Card(String tituloCard, String descricaoCard, int imgCardResource, ArrayList<String> paragrafo, ArrayList<String> paragrafo2, ArrayList<Image> imagens) {
+    public Card(String tituloCard, String descricaoCard, int imgCardResource, ArrayList<String> paragrafo, ArrayList<String> paragrafo2, ArrayList<Image> imagens, String video) {
         this.tituloCard = tituloCard;
         this.descricaoCard = descricaoCard;
         this.imgCardResource = imgCardResource;
@@ -20,6 +21,7 @@ public class Card {
         this.paragrafos = paragrafo;
         this.paragrafos2 = paragrafo2;
         this.imagens = imagens;
+        this.video = video;
 
     }
 
@@ -69,5 +71,13 @@ public class Card {
 
     public void setImagens(ArrayList<Image> imagens) {
         this.imagens = imagens;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 }
