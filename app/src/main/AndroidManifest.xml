@@ -87,7 +87,9 @@
             android:name=".Activity.ImagemEtiquetaActivity"
             android:parentActivityName=".Activity.DatabaseActivity"
             android:theme="@style/ActionBarDetails" />
-        <activity android:name=".Activity.ImagemInformativoActivity"></activity>
+        <activity android:name=".Activity.ImagemInformativoActivity" />
+        <activity android:name=".Activity.CameraActivity" />
+        <activity android:name=".Activity.AdicionarFotoActivity"></activity>
     </application>
 
 </manifest>

@@ -58,6 +58,7 @@ public class DatabaseActivity extends AppCompatActivity {
 
                 Button btnExcluir = (Button) dialog.findViewById(R.id.btnExcluirDatabase);
                 Button btnImagem = (Button) dialog.findViewById(R.id.btnImagemDatabase);
+                Button btnAdcImagem = (Button) dialog.findViewById(R.id.btnAdicionarImagemDatabase);
                 Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelarDatabase);
 
                 btnExcluir.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +118,21 @@ public class DatabaseActivity extends AppCompatActivity {
                             }
                         }
                         dialog.dismiss();
+                    }
+                });
+
+                btnAdcImagem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        List<Tag> listTags = database.buscarTodasTags();
+
+                        for (Tag tagAtual : listTags) {
+                            if (listTags.indexOf(tagAtual) == position) {
+                                Intent intent = new Intent(DatabaseActivity.this, AdicionarFotoActivity.class);
+                                intent.putExtra("tagAtual", tagAtual.getIdentificacao());
+                                startActivity(intent);
+                            }
+                        }
                     }
                 });
 
