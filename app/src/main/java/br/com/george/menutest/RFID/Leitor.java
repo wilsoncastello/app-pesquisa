@@ -51,6 +51,19 @@ public class Leitor {
         return listaTags;
     }
 
+    public String getTagProcura(String id) {
+
+        for (String tag : listaTags) {
+            if (tag.equals(id)) {
+                return tag;
+            } else {
+                return "Tag não encontrada";
+            }
+        }
+
+        return "Erro ao procurar tag";
+    }
+
     private List<String> listaTags = new ArrayList<>();
 
     public void setSelTag(String mSelTag) {

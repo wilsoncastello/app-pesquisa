@@ -24,7 +24,7 @@ import br.com.george.menutest.RFID.DotR900.OnBtEventListener;
 import br.com.george.menutest.RFID.DotR900.R900;
 import br.com.george.menutest.RFID.Leitor;
 
-public class BluetoothActivity extends AppCompatActivity implements OnBtEventListener {
+public class BluetoothEtiquetaActivity extends AppCompatActivity implements OnBtEventListener {
     private ListView lstBluetooth;
     private R900 leitor;
     private BtAdapter itemBluetooth;
@@ -46,7 +46,7 @@ public class BluetoothActivity extends AppCompatActivity implements OnBtEventLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bluetooth);
+        setContentView(R.layout.activity_etiqueta_bluetooth);
 
         setTitle("Dispositivos Pareados");
 
@@ -60,7 +60,7 @@ public class BluetoothActivity extends AppCompatActivity implements OnBtEventLis
             public void onClick(View arg0) {
                 leitor.buscarBluetooth();
                 listaDispositivo = leitor.getListaDispositivo();
-                BaseAdapter adapter = new BtAdapter(BluetoothActivity.this, listaDispositivo);
+                BaseAdapter adapter = new BtAdapter(BluetoothEtiquetaActivity.this, listaDispositivo);
                 lstBluetooth.setAdapter(adapter);
             }
         });
@@ -72,7 +72,7 @@ public class BluetoothActivity extends AppCompatActivity implements OnBtEventLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 leitor.setDispositivo(listaDispositivo.get(position));
 
-                Intent intent = new Intent(BluetoothActivity.this, EtiquetaActivity.class);
+                Intent intent = new Intent(BluetoothEtiquetaActivity.this, EtiquetaActivity.class);
                 Bundle bundle = new Bundle();
 
                 bundle.putString("addressDispositivo", leitor.getDispositivo().getAddress());

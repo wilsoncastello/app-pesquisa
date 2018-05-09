@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     android:orientation="vertical"
-    tools:context=".Activity.DatabaseActivity">
+    tools:context=".Activity.BluetoothEtiquetaActivity">
 
     <ListView
-        android:id="@+id/listTagsDatabase"
+        android:id="@+id/lstBluetooth"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"></ListView>
 
     <Button
-        android:id="@+id/btnProcurarEtiqueta"
-        android:layout_width="match_parent"
+        android:id="@+id/btnProcurar_Bluetooth"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        android:text="Procurar Etiqueta"
-        android:textColor="@android:color/white" />
+        android:text="Listar Dispositivos Pareados"
+        android:textColor="#FFF"
+        android:layout_gravity="bottom"/>
+
 
 </LinearLayout>

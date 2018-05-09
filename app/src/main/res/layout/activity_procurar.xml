@@ -4,25 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
     android:orientation="vertical"
-    tools:context=".Activity.BluetoothActivity">
+    tools:context="br.com.george.menutest.Activity.ProcurarActivity">
 
     <ListView
-        android:id="@+id/lstBluetooth"
+        android:id="@+id/lstApresentaTagEncontrada"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"></ListView>
-
-    <Button
-        android:id="@+id/btnProcurar_Bluetooth"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="Procurar"
-        android:textColor="#FFF"
-        android:layout_gravity="bottom"/>
-
 
 </LinearLayout>

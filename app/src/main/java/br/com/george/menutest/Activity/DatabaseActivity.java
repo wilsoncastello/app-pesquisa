@@ -30,6 +30,7 @@ public class DatabaseActivity extends AppCompatActivity {
     private List<ImagemBD> imagens;
     private ArrayAdapter adapter;
     private Database database;
+    private Button btnProcurar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,15 @@ public class DatabaseActivity extends AppCompatActivity {
 
         adapter = new DatabaseAdapter(DatabaseActivity.this, tags);
         listDatabase = (ListView) findViewById(R.id.listTagsDatabase);
+        btnProcurar = (Button) findViewById(R.id.btnProcurarEtiqueta);
+
+        btnProcurar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DatabaseActivity.this, BluetoothProcurarActivity.class);
+                startActivity(intent);
+            }
+        });
 
         listDatabase.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -64,8 +74,8 @@ public class DatabaseActivity extends AppCompatActivity {
                 btnExcluir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        for(ImagemBD img: imagens){
-                            if(tags.get(position).getCod() == img.getCodTag()){
+                        for (ImagemBD img : imagens) {
+                            if (tags.get(position).getCod() == img.getCodTag()) {
                                 String srcFileDelete = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + img.getImagem().substring(100);
                                 File fdelete = new File(srcFileDelete);
                                 if (fdelete.exists()) {
@@ -101,8 +111,8 @@ public class DatabaseActivity extends AppCompatActivity {
 
                                 imagensBanco = database.buscarTodasImagens();
 
-                                for(ImagemBD imagemBD: imagensBanco){
-                                    if(imagemBD.getCodTag() == tagAtual.getCod()){
+                                for (ImagemBD imagemBD : imagensBanco) {
+                                    if (imagemBD.getCodTag() == tagAtual.getCod()) {
                                         imagensBancoEnd.add(imagemBD.getImagem());
                                         datasBanco.add(imagemBD.getData());
                                         descricaoBanco.add(imagemBD.getDescricao());

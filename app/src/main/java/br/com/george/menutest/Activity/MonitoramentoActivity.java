@@ -63,7 +63,7 @@ public class MonitoramentoActivity extends AppCompatActivity implements Navigati
         btIniciarLeitor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MonitoramentoActivity.this, BluetoothActivity.class);
+                Intent intent = new Intent(MonitoramentoActivity.this, BluetoothEtiquetaActivity.class);
                 startActivity(intent);
             }
         });

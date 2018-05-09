@@ -74,7 +74,7 @@
         </provider>
 
         <activity
-            android:name=".Activity.BluetoothActivity"
+            android:name=".Activity.BluetoothEtiquetaActivity"
             android:parentActivityName=".Activity.MonitoramentoActivity" />
         <activity
             android:name=".Activity.EtiquetaActivity"
@@ -88,8 +88,11 @@
             android:parentActivityName=".Activity.DatabaseActivity"
             android:theme="@style/ActionBarDetails" />
         <activity android:name=".Activity.ImagemInformativoActivity" />
-        <activity android:name=".Activity.CameraActivity" />
-        <activity android:name=".Activity.AdicionarFotoActivity"></activity>
+        <activity android:name=".Activity.AdicionarFotoActivity" />
+        <activity android:name=".Activity.BluetoothProcurarActivity"
+            android:parentActivityName=".Activity.DatabaseActivity"/>
+        <activity android:name=".Activity.ProcurarActivity"
+            android:parentActivityName=".Activity.BluetoothProcurarActivity"></activity>
     </application>
 
 </manifest>

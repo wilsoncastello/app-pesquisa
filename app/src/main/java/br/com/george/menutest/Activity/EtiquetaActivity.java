@@ -34,8 +34,6 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
     private R900 leitor;
     public static final int MSG_ENABLE_LINK_CTRL = 10;
     public static final int MSG_DISABLE_LINK_CTRL = 11;
-    public static final int MSG_ENABLE_DISCONNECT = 12;
-    public static final int MSG_DISABLE_DISCONNECT = 13;
     public static final int MSG_SHOW_TOAST = 20;
     public static final int MSG_REFRESH_LIST_TAG = 22;
     public static final int MSG_BT_DATA_RECV = 10;
@@ -98,7 +96,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_etiqueta);
 
-        setTitle("Tags Econtradas");
+        setTitle("Etiquetas Econtradas");
 
         database = new Database(EtiquetaActivity.this);
 
@@ -125,9 +123,9 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
                     String tagVerifica = leitor.getListaTags().get(position);
                     boolean igual = false;
 
-                    if(tagsArray != null){
-                        for(Tag tagAtual: tagsArray){
-                            if(tagAtual.getIdentificacao().equals(tagVerifica)){
+                    if (tagsArray != null) {
+                        for (Tag tagAtual : tagsArray) {
+                            if (tagAtual.getIdentificacao().equals(tagVerifica)) {
                                 igual = true;
                                 break;
                             } else {
@@ -138,7 +136,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
                         Toast.makeText(EtiquetaActivity.this, "Banco vazio!", Toast.LENGTH_SHORT).show();
                     }
 
-                    if(igual){
+                    if (igual) {
                         Toast.makeText(EtiquetaActivity.this, "Etiqueta já salva!", Toast.LENGTH_SHORT).show();
                     } else {
                         tag = leitor.getListaTags().get(position);
@@ -160,8 +158,7 @@ public class EtiquetaActivity extends AppCompatActivity implements OnBtEventList
 
         try {
             leitor.leitura();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             Log.d("ERRO", ex.getMessage());
         }
 
