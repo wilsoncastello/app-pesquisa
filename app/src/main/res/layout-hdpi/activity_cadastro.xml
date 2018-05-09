@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="8dp"
-            android:textSize="13sp"
+            android:textSize="10sp"
             android:text="Clique no nome das fotos para inserir uma descrição"/>
 
     </LinearLayout>
@@ -118,7 +118,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:text="Salvar"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textColor="#FFF" />
 
     <Button
@@ -129,7 +129,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:text="Cancelar"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textColor="#FFF" />
 
 </LinearLayout>
