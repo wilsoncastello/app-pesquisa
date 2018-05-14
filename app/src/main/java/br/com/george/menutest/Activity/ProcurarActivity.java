@@ -23,7 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.george.menutest.Adapter.TagAdapter;
+import br.com.george.menutest.Adapter.DatabaseAdapter;
 import br.com.george.menutest.Database.Database;
 import br.com.george.menutest.Model.ImagemBD;
 import br.com.george.menutest.Model.Tag;
@@ -65,7 +65,7 @@ public class ProcurarActivity extends AppCompatActivity implements OnBtEventList
     private List<Tag> tagsBanco;
     private List<ImagemBD> imagens;
     private List<String> tagLeitor;
-    private List<String> tagsEncontradas;
+    private List<Tag> tagsEncontradas;
     private Database database;
     //endregion
 
@@ -87,8 +87,8 @@ public class ProcurarActivity extends AppCompatActivity implements OnBtEventList
                         for (Tag tagBanco : tagsBanco) {
                             for (String tagAtual : tagLeitor) {
                                 if (tagBanco.getIdentificacao().equals(tagAtual)) {
-                                    if (!tagsEncontradas.contains(tagAtual)) {
-                                        tagsEncontradas.add(tagAtual);
+                                    if (!tagsEncontradas.contains(tagBanco)) {
+                                        tagsEncontradas.add(tagBanco);
                                     }
                                 }
                             }
@@ -130,12 +130,12 @@ public class ProcurarActivity extends AppCompatActivity implements OnBtEventList
 
             lstTagEncontrada = (ListView) findViewById(R.id.lstApresentaTagEncontrada);
 
-            mAdapterTag = new TagAdapter(ProcurarActivity.this, tagsEncontradas);
+            mAdapterTag = new DatabaseAdapter(ProcurarActivity.this, tagsEncontradas);
             lstTagEncontrada.setAdapter(mAdapterTag);
 
             lstTagEncontrada.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
                     final Dialog dialog = new Dialog(ProcurarActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.menu_database);
@@ -149,22 +149,23 @@ public class ProcurarActivity extends AppCompatActivity implements OnBtEventList
                         @Override
                         public void onClick(View v) {
                             for (ImagemBD img : imagens) {
-                                if (tagsBanco.get(position).getCod() == img.getCodTag()) {
-                                    String srcFileDelete = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + img.getImagem().substring(100);
-                                    File fdelete = new File(srcFileDelete);
-                                    if (fdelete.exists()) {
-                                        if (fdelete.delete()) {
-                                            Log.i("DELETE", "deletou!!!");
-                                        } else {
-                                            Log.i("DELETE", "não deletou!!!");
+                                for (Tag t : tagsBanco) {
+                                    if (tagsEncontradas.get(position).getCod() == img.getCodTag()){
+                                        String srcFileDelete = Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOCUMENTS + "/ImagensBancoIFSC/" + img.getImagem().substring(100);
+                                        File fdelete = new File(srcFileDelete);
+                                        if (fdelete.exists()) {
+                                            if (fdelete.delete()) {
+                                                Log.i("DELETE", "deletou!!!");
+                                            } else {
+                                                Log.i("DELETE", "não deletou!!!");
+                                            }
                                         }
+                                        database.excluirImagem(img.getCod());
                                     }
-
-                                    database.excluirImagem(img.getCod());
                                 }
                             }
 
-                            database.excluirTag(tagsBanco.get(position).getCod());
+                            database.excluirTag(tagsEncontradas.get(position).getCod());
                             finish();
                         }
                     });
@@ -172,10 +173,8 @@ public class ProcurarActivity extends AppCompatActivity implements OnBtEventList
                     btnImagem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            List<Tag> listTags = database.buscarTodasTags();
-
-                            for (Tag tagAtual : listTags) {
-                                if (listTags.indexOf(tagAtual) == position) {
+                            for (Tag tagAtual : tagsEncontradas) {
+                                if (tagsEncontradas.indexOf(tagAtual) == position) {
 
                                     List<ImagemBD> imagensBanco = new ArrayList<>();
                                     ArrayList<String> imagensBancoEnd = new ArrayList<>();
@@ -210,8 +209,8 @@ public class ProcurarActivity extends AppCompatActivity implements OnBtEventList
                         public void onClick(View view) {
                             List<Tag> listTags = database.buscarTodasTags();
 
-                            for (Tag tagAtual : listTags) {
-                                if (listTags.indexOf(tagAtual) == position) {
+                            for (Tag tagAtual : tagsEncontradas) {
+                                if (tagsEncontradas.indexOf(tagAtual) == position) {
                                     Intent intent = new Intent(ProcurarActivity.this, AdicionarFotoActivity.class);
                                     intent.putExtra("tagAtual", tagAtual.getIdentificacao());
                                     startActivity(intent);

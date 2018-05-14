@@ -48,6 +48,11 @@ public class ImagemDAO {
         database.delete("Imagem", "id = ?", new String[]{Integer.toString(codigo)});
     }
 
+    public void excluirCodTag(int codigo) {
+        //EXCLUINDO  REGISTRO E RETORNANDO O NÚMERO DE LINHAS AFETADAS
+        database.delete("Imagem", "idTag = ?", new String[]{Integer.toString(codigo)});
+    }
+
     public ImagemBD buscarImagemId(int codigo) {
         ImagemBD imagemBD = new ImagemBD();
         String[] colunas = new String[]{"id", "idTag", "data","imagem", "descricao"};

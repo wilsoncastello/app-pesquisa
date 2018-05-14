@@ -58,6 +58,10 @@ public class Database {
         new ImagemDAO(db).excluir(cod);
     }
 
+    public void excluirImagemTag(int cod){
+        new ImagemDAO(db).excluirCodTag(cod);
+    }
+
     public ImagemBD buscarIamgemId(int cod){
         return new ImagemDAO(db).buscarImagemId(cod);
     }
